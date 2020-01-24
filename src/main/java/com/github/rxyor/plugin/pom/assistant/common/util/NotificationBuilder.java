@@ -3,11 +3,8 @@ package com.github.rxyor.plugin.pom.assistant.common.util;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationListener;
 import com.intellij.notification.NotificationType;
-import com.intellij.openapi.actionSystem.AnAction;
-import com.intellij.openapi.ui.popup.Balloon;
-import java.lang.ref.WeakReference;
-import java.util.List;
 import javax.swing.Icon;
+import lombok.Getter;
 import lombok.ToString;
 
 /**
@@ -19,10 +16,10 @@ import lombok.ToString;
  * @date 2020/1/24 周五 17:20:00
  * @since 1.0.0
  */
+@Getter
 @ToString
 public class NotificationBuilder {
 
-    private String id;
     private String myGroupId;
     private Icon myIcon;
     private NotificationType myType;
@@ -30,20 +27,12 @@ public class NotificationBuilder {
     private String mySubtitle;
     private String myContent;
     private NotificationListener myListener;
-    private String myDropDownText;
-    private List<AnAction> myActions;
-    private AnAction myContextHelpAction;
-    private Runnable myWhenExpired;
-    private Boolean myImportant;
-    private WeakReference<Balloon> myBalloonRef;
-    private long myTimestamp;
 
     NotificationBuilder() {
     }
 
-    public NotificationBuilder id(String id) {
-        this.id = id;
-        return this;
+    public static NotificationBuilder builder() {
+        return new NotificationBuilder();
     }
 
     public NotificationBuilder myGroupId(String myGroupId) {
@@ -78,41 +67,6 @@ public class NotificationBuilder {
 
     public NotificationBuilder myListener(NotificationListener myListener) {
         this.myListener = myListener;
-        return this;
-    }
-
-    public NotificationBuilder myDropDownText(String myDropDownText) {
-        this.myDropDownText = myDropDownText;
-        return this;
-    }
-
-    public NotificationBuilder myActions(List<AnAction> myActions) {
-        this.myActions = myActions;
-        return this;
-    }
-
-    public NotificationBuilder myContextHelpAction(AnAction myContextHelpAction) {
-        this.myContextHelpAction = myContextHelpAction;
-        return this;
-    }
-
-    public NotificationBuilder myWhenExpired(Runnable myWhenExpired) {
-        this.myWhenExpired = myWhenExpired;
-        return this;
-    }
-
-    public NotificationBuilder myImportant(Boolean myImportant) {
-        this.myImportant = myImportant;
-        return this;
-    }
-
-    public NotificationBuilder myBalloonRef(WeakReference<Balloon> myBalloonRef) {
-        this.myBalloonRef = myBalloonRef;
-        return this;
-    }
-
-    public NotificationBuilder myTimestamp(long myTimestamp) {
-        this.myTimestamp = myTimestamp;
         return this;
     }
 
