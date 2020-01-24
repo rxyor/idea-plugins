@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<options>
+  <configurable id="preferences.keymap" configurable_name="Keymap">
+    <option name="file" path="ActionManager" hit="pom file info" />
+    <option name="info" path="ActionManager" hit="pom file info" />
+    <option name="pom" path="ActionManager" hit="pom file info" />
+    <option name="info" path="ActionManager" hit="show pom info" />
+    <option name="pom" path="ActionManager" hit="show pom info" />
+    <option name="show" path="ActionManager" hit="show pom info" />
+  </configurable>
+</options>
+

@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin-repository><ff>"Graphics"</ff><category name="Graphics"><idea-plugin downloads="9217" size="36623" date="1119074780000" updatedDate="1119099847000" url=""><name>ColourChooser</name><id>ColourChooser</id><description><![CDATA[Translates a colour, chosen in a colour pane, into java/css code and
+	<ul>
+		<li>inserts it at the cursor location, or</li>
+		<li>copies it into the clipboard</li>
+	</ul>
+	, in 1 click.]]></description><version>0.4d</version><vendor email="alainravet-jetbrains@yahoo.com" url="">Alain Ravet</vendor><rating>4.2</rating><change-notes><![CDATA[Added: CSS colour format export (to insert it, select a non-java file first).]]></change-notes><idea-version min="n/a" max="n/a" since-build="40.3370"></idea-version><tags>Graphics</tags></idea-plugin><idea-plugin downloads="2482" size="112046" date="1088714643000" updatedDate="1088714643000" url=""><name>Gold Section</name><id>Gold Section</id><description><![CDATA[Gold Section 2(GS2) is a design tool for building nice palette for HTML
+        documents by method of "gold section" (in base of one is magical number 1.618033985017358...).]]></description><version>2.26.1</version><vendor email="davidovsv@yandex.ru" url="">Stanislav Davydov</vendor><rating>4.5</rating><change-notes><![CDATA[<h3>2.26</h3>
+<ul>
+    <li>Some icons changed. Especialy thanks to Alex Efimov.</li>
+</ul>
+
+<h3>2.25</h3>
+<ul>
+    <li>Bugfixes.</li>
+</ul>
+
+<h3>2.23</h3>
+<ul>
+    <li>New HTML Preview functionality. Now you can set up some HTML template and
+    watch it in different color schemas.</li>
+    <li>Bugfixes.</li>
+</ul>
+
+<h3>2.19</h3>
+<ul>
+    <li>Bugfixes.</li>
+</ul>
+
+<h3>2.18</h3>
+<ul>
+    <li>Bugfixes.</li>
+</ul>
+
+<h3>2.17</h3>
+<ul>
+    <li>Favorits.</li>
+    <li>Bugfixes.</li>
+</ul>]]></change-notes><idea-version min="n/a" max="n/a" since-build="40.1126"></idea-version><tags>Graphics</tags></idea-plugin><idea-plugin downloads="4345" size="2776480" date="1093538352000" updatedDate="1093538352000" url=""><name>SvgViewer</name><id>SvgViewer</id><description><![CDATA[A viewer for Scalable Vector Graphics (SVG) documents. Since SVG can render images, you can also use this viewer to display png, jpeg, tiff and gif files.]]></description><version>2.2.8</version><vendor email="a.armstrong@optusnet.com.au" url="">Andrew Armstrong</vendor><rating>00</rating><change-notes><![CDATA[<html>
+        Adopted IDEA's look and feel
+        </html>]]></change-notes><idea-version min="n/a" max="n/a" since-build="40.2000"></idea-version><tags>Graphics</tags></idea-plugin><idea-plugin downloads="2928" size="11102" date="1100691475000" updatedDate="1100691475000" url=""><name>ImageView</name><id>ImageView</id><description><![CDATA[A small and simple plugin to quickly and easy view GIF, JPG and PNG images.
+ Images are loaded from a directory or from a JAR-file. Future releases will include features
+ such as transformation and possiblity to generate Java code for loading an image.]]></description><version>0.1</version><vendor email="" url="">Erik Hellman</vendor><rating>00</rating><change-notes><![CDATA[]]></change-notes><idea-version min="n/a" max="n/a" since-build="40.2200"></idea-version><tags>Graphics</tags></idea-plugin><idea-plugin downloads="7194" size="98391" date="1155771063000" updatedDate="1155771063000" url=""><name>Color Browser</name><id>Color Browser</id><description><![CDATA[        This plugin allows you to see colors used in Java code and CSS/HTML files. You
+        may also picks colors and insert one of several representations of that color
+        in the current editor.
+    ]]></description><version>0.2.1-6.x</version><vendor email="rick@maddyhome.com" url="">Rick Maddy</vendor><rating>3.2</rating><change-notes><![CDATA[
+        
+Bug Fixes<br>
+- Internal error if moving cursor beyond end of line while pressing Ctrl key.<br>
+- Some Color and ColorUIResource constructors were not recognized.<br>
+        
+    ]]></change-notes><idea-version min="n/a" max="n/a" since-build="55.5000"></idea-version><tags>Graphics</tags></idea-plugin><idea-plugin downloads="5978" size="50280" date="1161639194000" updatedDate="1161639194000" url=""><name>Image Design Editor</name><id>Image Design Editor</id><description><![CDATA[As a developer, how many times did you have to wait somebody to design/draw an image icon for the brand new feature of your software you are working on?
+    Or maybe you have tried 5 different software products to draw the icon yourself.
+        <b>Image Design Editor</b> is developed to help IDEA users in designing the image icons by themselves.
+        It is integrated as an IDEA plugin, so you only need to select the <i>New Image Icon</i> menu item
+        under the <i>New</i> menu and a dialog will be displayed, asking you to select the desired output file
+        type (JPEG or PNG) and the new image file size (width and height with supported values between 12 and 64).
+         When the <i>OK</i> button is hit, a canvas will allow you to draw the image icon pixel by pixel.
+         It is designed with a reduced set of features just for making the icon drawing easier for us, the developers.
+        It is probably not a very good idea to be used by very skilled graphic designers.
+        <br><br>
+        Features:
+        <ul>
+        <li>create JPEG or PNG images with a resolution between 12*12 and 64*64 pixels</li>
+        <li>choose any transparent (4 bytes based) or non-transparent (3 bytes based) color for drawing using a decorated (added transparency support) JColorChooser</li>
+        <li>pixel by pixel drawing either by dragging or by clicking the mouse in the canvas area</li>
+        <li>image preview at any moment in the design time</li>
+        <li>mouse coordinates in the resulted image display</li>
+        <li>set background color</li>
+        <li><i>rubber mode</i> to clear the wrong pixels</li>
+        <li>when the <i>Save image</i> button is clicked, the image icon is ready to be used in your application, you just need to write the code to load it</li>
+        </ul>
+        <br>
+        I hope you will enjoy using it or modifying it as much as I enjoyed developing it.]]></description><version>1.0</version><vendor email="" url="">Dan N. Dromereschi</vendor><rating>4.6</rating><change-notes><![CDATA[]]></change-notes><idea-version min="n/a" max="n/a" since-build="50.4155"></idea-version><tags>Graphics</tags></idea-plugin><idea-plugin downloads="51321" size="40829" date="1359777711000" updatedDate="1510836563000" url=""><name>SvgViewer 2</name><id>SvgViewer 2</id><description><![CDATA[An updated version of the SVG Viewer plugin originally released by Andrew Armstrong back in 2004 (I attempted to contact him but his listed email address is no longer valid) This release works with the current versions of the Intellij platform and runs in Intellij and WebStorm. It seems to have trouble in AppCode due to a missing Batik dependency. However I was unable to find a 'depends' node in the plugin.xml file that indicated it works with all Intellij platforms except AppCode so I simply left it out, indicating it works for Intellij only. UPDATE: I've added some dependencies so that this can be used with WebStorm and PhpStorm. It will not work on AppCode, even if it shows up as being available in the browser repository for that product.]]></description><version>2.0.1</version><vendor email="billdwhite@gmail.com" url="http://www.billdwhite.com">Bill White</vendor><rating>3.6</rating><change-notes><![CDATA[<ul> 
+ <li>2.0.1 - adjusted image size to suppress log warnings</li> 
+ <li>2.0 - first release</li> 
+</ul>]]></change-notes><idea-version min="n/a" max="n/a" since-build="111.1"></idea-version><tags>Graphics</tags></idea-plugin><idea-plugin downloads="13649" size="11048" date="1521026867000" updatedDate="1521026867000" url=""><name>PNG Optimizer</name><id>com.bulenkov.intellij.png.optimizer</id><description><![CDATA[Plugin allows to optimize PNG files by size before commit and manually via context menu in Project View]]></description><version>1.4</version><vendor email="konstantin@bulenkov.com" url="http://www.bulenkov.com">Konstantin Bulenkov</vendor><rating>4.6</rating><change-notes><![CDATA[Remove unnecessary logging]]></change-notes><idea-version min="n/a" max="n/a" since-build="131.0"></idea-version><depends>com.intellij.modules.lang</depends><tags>Graphics</tags></idea-plugin><idea-plugin downloads="15603" size="45057" date="1458828719000" updatedDate="1458828719000" url=""><name>Base64 image encoder</name><id>ru.mobiledev.plugins.uigd</id><description><![CDATA[Allows to view image as base64-encoded for using in CSS/HTML.
+<br /> Available as new button in image editor toolbar.  This plugin requires Java 8 to run.]]></description><version>1.0</version><vendor email="tachikomagt@gmail.com" url="">TachikomaGT</vendor><rating>4.6</rating><change-notes><![CDATA[Initial release
+<br />]]></change-notes><idea-version min="n/a" max="n/a" since-build="143.0"></idea-version><depends>com.intellij.modules.lang</depends><tags>Graphics</tags></idea-plugin><idea-plugin downloads="13798" size="23568" date="1485979500000" updatedDate="1485979500000" url=""><name>Material Color Palette</name><id>com.dvd.intellijdea.materialcolorpalette</id><description><![CDATA[This plugin helps you add a Material Color value into the project]]></description><version>1.2</version><vendor email="" url="https://github.com/dvdandroid/material-color-palette-plugin">dvdandroid</vendor><rating>00</rating><change-notes><![CDATA[<ul> 
+ <li>1.2 Fixed pasting in wrong window</li> 
+</ul>]]></change-notes><idea-version min="n/a" max="n/a" since-build="141.0"></idea-version><depends>org.jetbrains.android</depends><tags>Graphics</tags></idea-plugin><idea-plugin downloads="1922" size="91719" date="1511386992000" updatedDate="1511386992000" url=""><name>lottie-idea</name><id>net.olegg.bodylookin</id><description><![CDATA[Basic viewer for Lottie animations.
+<br>]]></description><version>0.0.4</version><vendor email="me@olegg.net" url="">Oleg Godovykh</vendor><rating>00</rating><change-notes><![CDATA[<b>0.0.4</b> 
+<ul> 
+ <li>bodylookin is now lottie-idea!</li> 
+ <li>Updated lottie-web to 5.0.2</li> 
+</ul> 
+<b>0.0.3</b> 
+<ul> 
+ <li>Added file loading from context menu</li> 
+ <li>Added file loading from filesystem</li> 
+ <li>Limit supported files to JSON</li> 
+</ul> 
+<b>0.0.2</b> 
+<ul> 
+ <li>Fixed plugin crash when JavaFX is not present</li> 
+ <li>Added player controls (play, pause, loop)</li> 
+ <li>Updated bodymovin to 4.5.7</li> 
+</ul> 
+<b>0.0.1</b> 
+<ul> 
+ <li>Initial release</li> 
+</ul>]]></change-notes><idea-version min="n/a" max="n/a" since-build="145.0"></idea-version><depends>com.intellij.modules.lang</depends><tags>Graphics</tags></idea-plugin><idea-plugin downloads="18952" size="959455" date="1545917678000" updatedDate="1545917678000" url=""><name>Android Drawable Preview</name><id>com.mistamek.drawablepreview.drawable-preview</id><description><![CDATA[
+    Render drawable instead of default icon. Supports binary and vector images
+    ]]></description><version>1.1.4</version><vendor email="grigor1ev.vladimir@yandex.ru" url="">Mista Mek</vendor><rating>4.6</rating><change-notes><![CDATA[Fixed mipmaps, npe.]]></change-notes><idea-version min="n/a" max="n/a" since-build="171.0"></idea-version><depends>org.jetbrains.android</depends><tags>Graphics</tags></idea-plugin><idea-plugin downloads="2457" size="756304" date="1559035694000" updatedDate="1559035694000" url=""><name>TinyPNG</name><id>cn.deemons.tinypng.plugin</id><description><![CDATA[
+    <h1>TinyPNG</h1>
+      <br>
+      <p>
+      <b><a href="https://github.com/Deemonser/TinyPngPlugin">GitHub</a></b>
+      </p>
+      <p>
+      <b><a href="https://github.com/Deemonser/TinyPngPlugin">https://github.com/Deemonser/TinyPngPlugin</a></b>
+      </p>
+      <br>
+      <p><b>A plugin for compression picture by TinyPNG API.</b></p>
+      <br>
+      <p><b>No API Key now, no free use</b></p>
+      <br>
+      <p><b>利用 TinyPNG 的 API ，开发的图片压缩工具。</b></p>
+      <p><b>现在无需 API Key，免费无限制使用</b></p>
+      <p><b>如果有问题，欢迎大家到 GitHub 上留言。</b></p>
+      <br>
+      <p><b>Use： Tools --&gt; TinyPNG </b></p>
+      <br>
+      <img src="https://raw.githubusercontent.com/Deemonser/TinyPngPlugin/master/img/Snipaste_2019-05-28_16-17-55.png" alt="Use">
+      <p><b>更多详细信息，请查看 GitHub</b> <a href="https://github.com/Deemonser/TinyPngPlugin">https://github.com/Deemonser/TinyPngPlugin</a></p>
+
+    
+  ]]></description><version>2.3</version><vendor email="deemonsch@gmail.com" url="https://deemons.cn">Deemons</vendor><rating>00</rating><change-notes><![CDATA[
+      <ul>
+        <li>v2.3 fix timeOut</li>
+        <li>v2.0 去除 API Key，免费无限制使用</li>
+        <li>v1.6 fix bug</li>
+        <li>v1.5 fix bug</li>
+        <li>v1.4 edit doc</li>
+        <li>v1.3 fix some bug</li>
+        <li>v1.2 add info</li>
+        <li>v1.1 fix bug</li>
+        <li>v1.0 init</li>
+      </ul>
+
+    
+  ]]></change-notes><idea-version min="n/a" max="n/a" since-build="173.0"></idea-version><depends>com.intellij.modules.lang</depends><tags>Graphics</tags></idea-plugin><idea-plugin downloads="739" size="1553547" date="1554868626000" updatedDate="1554868626000" url=""><name>autoTinyPic</name><id>com.hhh.plugin.auto.tinypic</id><description><![CDATA[
+      Automatically add png or jpg images to the project to the https://tinypng.com/ for compression.
+    ]]></description><version>1.5</version><vendor email="haihuahuang2013@163.com" url="https://github.com/3HJack">OnePiece</vendor><rating>00</rating><change-notes><![CDATA[
+    1. Automatically monitor the images added to the project and compress.<br>
+
+    2. Manually select images for compression.<br>
+
+    3. Pop-up prompt when the image is still larger than 10KB after compression.
+    
+  ]]></change-notes><idea-version min="n/a" max="n/a" since-build="173.0"></idea-version><depends>com.intellij.modules.lang</depends><tags>Graphics</tags></idea-plugin><idea-plugin downloads="911" size="17095" date="1575578838000" updatedDate="1575578838000" url=""><name>Image Diff</name><id>de.ehmkah.projects.imgdiff</id><description><![CDATA[
+     This plugin shows the diff of two images in the diff view.<br>
+     I am happy if you report issues, I am going to fix them.
+    ]]></description><version>1.2.0</version><vendor email="imgdiff.20.mkrausse@spamgourmet.com" url="http://www.m-krausse.de">m-krausse.de</vendor><rating>4.5</rating><change-notes><![CDATA[ 
+<ul>
+    <li>1.2.0
+    <ul>
+        <li><a href="https://github.com/ehmkah/imgdiff/issues/33">issue/33</a> feature: removed old behavior</li>
+        <li><a href="https://github.com/ehmkah/imgdiff/issues/40">issue/40</a> bugfix: show diff image for intellij 2019.3</li>
+        <li>internal: upgrade to gradle 6.0.1</li>
+    </ul>
+    </li>  
+    <li>1.1.0
+    <ul>
+        <li><a href="https://github.com/ehmkah/imgdiff/issues/35">issue/35</a> bugfix: jump to source from imgDiff fixed</li>
+        <li>internal: upgrade to gradle 5.6.3</li>
+        <li>internal: moved last java class to kotlin</li>
+    </ul>
+    </li>  
+    <li>1.0.0
+    <ul>
+        <li><a href="https://github.com/ehmkah/imgdiff/issues/11">issue/11</a> feature: experimental show diff between two images. see <a href="https://github.com/ehmkah/imgdiff/blob/master/README.adoc">README</a></li>
+        <li>internal: upgrade to gradle 5.6.2</li>
+    </ul>
+    </li>  
+   <li>0.7.0
+   <ul>
+    <li><a href="https://github.com/ehmkah/imgdiff/issues/24">issue/24</a> (bugfix: fixed memory leak)</li>
+    <li><a href="https://github.com/ehmkah/imgdiff/issues/22">issue/22</a> (technical: upgrade used kotlin and intellij gradle-plugin)</li>
+   </ul>
+   </li> 
+   <li>0.6.0
+   <ul>
+    <li><a href="https://github.com/ehmkah/imgdiff/issues/20">issue/20</a> (bugfix: better detect equal images)</li>
+   </ul>
+   </li>
+   <li>0.5.0
+   <ul>
+    <li><a href="https://github.com/ehmkah/imgdiff/issues/17">issue/17</a> (refactoring: update gradle to 5.6)</li>
+    <li><a href="https://github.com/ehmkah/imgdiff/issues/15">issue/15</a> (feature: make it easier to identify identical images)</li>
+    <li><a href="https://github.com/ehmkah/imgdiff/issues/13">issue/13</a> (refactoring: move source code to kotlin)</li>
+    <li><a href="https://github.com/ehmkah/imgdiff/issues/6">issue/6</a> (feature: image for plugin)</li>
+   </ul>
+   </li>
+   <li>0.4.0
+    <ul>
+  <li><a href="https://github.com/ehmkah/imgdiff/issues/9">issue/9</a> (feature Short alt+F/ to open imgDiff)</li>
+  <li><a href="https://github.com/ehmkah/imgdiff/issues/8/">issue/8</a> (feature imgDiff-dialog is resizable)</li>
+    </ul>
+   </li>
+   <li>0.3.0
+    <ul>
+      <li><a href="https://github.com/ehmkah/imgdiff/issues/5">issues/5</a> (changed color-schema for diff)</li>   
+      <li><a href="https://github.com/ehmkah/imgdiff/issues/1">issue/1</a> (bugfix dont crash if size differes</li>
+    </ul>
+    </li>                       
+   <li>0.2.0 - support gradle for build; support all jetbrain products; bugfix no crash if image size differs</li>
+   <li>0.1.0 - first offical release - very bugy</li></ul>]]></change-notes><idea-version min="n/a" max="n/a" since-build="173.0"></idea-version><depends>com.intellij.modules.lang</depends><tags>Graphics</tags></idea-plugin><idea-plugin downloads="181" size="3404" date="1574939578000" updatedDate="1574939578000" url=""><name>StarlightDark</name><id>net.starlighthosting.StarlightDark</id><description><![CDATA[Starlight Jetbrains theme]]></description><version>1.0</version><vendor email="support@starlighthosting.net" url="https://starlight.hosting">Starlight Hosting</vendor><rating>00</rating><change-notes><![CDATA[]]></change-notes><idea-version min="n/a" max="n/a" since-build="173.0"></idea-version><depends>com.intellij.modules.lang</depends><tags>Graphics</tags><tags>Theme</tags></idea-plugin></category><ff>"Inspection"</ff><category name="Inspection"><idea-plugin downloads="270" size="12165" date="1116900478000" updatedDate="1116900478000" url=""><name>PrivateWriteInspection</name><id>PrivateWriteInspection</id><description><![CDATA[Inspection that reports fields annotated with @PrivateWrite that are assigned a value, outside of their defining class.
+		<br>
+		Requires <a href="http://intellij.org/twiki/pub/Main/PrivateWriteInspectionPlugin/privatewriteannotation.jar">privatewriteannotation.jar</a>]]></description><version>0.1</version><vendor email="alainravet-jetbrains@yahoo.com" url="">Alain Ravet</vendor><rating>00</rating><change-notes><![CDATA[]]></change-notes><idea-version min="n/a" max="n/a" since-build="40.3341"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="1406" size="88182" date="1161778597000" updatedDate="1161778597000" url=""><name>Problems View</name><id>Problems View</id><description><![CDATA[        The problems detector for monitoring something wrong in
+        IDE (incomplete settings, wrong configurations, etc)
+    ]]></description><version>1.0.1</version><vendor email="" url="">Alexey Efimov</vendor><rating>2.6</rating><change-notes><![CDATA[]]></change-notes><idea-version min="n/a" max="n/a" since-build="55.5557"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="2735715" size="145379964" date="1579194154000" updatedDate="1579194154000" url="https://github.com/jshiell/checkstyle-idea"><name>CheckStyle-IDEA</name><id>CheckStyle-IDEA</id><description><![CDATA[
+        
+<p>
+    This plugin provides both real-time and on-demand scanning
+    of Java files with CheckStyle from within IDEA.
+</p>
+<p>
+    Please note this is not an official part of Checkstyle - they neither endorse
+    nor bear responsibility for this plugin. Please see the README for full details.
+</p>
+        
+    ]]></description><version>5.35.4</version><vendor email="jamie@infernus.org" url="https://infernus.org/">Jamie Shiell</vendor><rating>4.4</rating><change-notes><![CDATA[
+        
+<ul>
+    <li>5.35.4: Fixed: File cleanup should no longer throw concurrent modification exceptions if execution is cancelled (#470).</li>
+    <li>5.35.3: Fixed: Problems are no longer duplicated in inspection panel (#467).</li>
+    <li>5.35.3: New: Added Checkstyle 8.28 - thanks to @mustaphazorgat (#468).</li>
+    <li>5.35.2: Fixed: Reverted inspection threading due to perf degradation; reworked inspection locking (#462, #466).</li>
+    <li>5.35.2: New: Logo added for plugin marketplace - thanks to @ahus1 (#465).</li>
+    <li>5.35.1: Fixed: Changed inspection threading to avoid deadlocking (#462).</li>
+    <li>5.35.0: New: Added Checkstyle 8.27.</li>
+    <li>5.35.0: Fixed: radio button issues - thanks to @marshallwalker (##461).</li>
+    <li>5.34.0: New: Added Checkstyle 8.26.</li>
+    <li>5.33.1: Fixed: exception on scroll-to-source in newer versions of IDEA (#457).</li>
+    <li>5.33.0: New: Added Checkstyle 8.25. Support has been dropped for Checkstyle &lt; 6.16.1 due to API changes.</li>
+    <li>5.32.0: New: Added Checkstyle 8.24.</li>
+    <li>5.31.0: New: Added Checkstyle 8.23.</li>
+    <li>5.31.0: New: Now built against IDEA 2018.1.8 (was 2017.1.3).</li>
+    <li>5.30.0: New: Quick fix now available to add suppressions for the current rule (#358).</li>
+    <li>5.29.2: Fixed: Wrapped module lookup as read action (#450).</li>
+    <li>5.29.2: Fixed: Parse errors are now better reflected in the log/error messages for static scans (#449).</li>
+    <li>5.29.1: Fixed: ClassCastExceptions thrown from Antlr during parsing were not processed properly (#449).</li>
+    <li>5.29.0: New: Added Checkstyle 8.22.</li>
+    <li>5.28.0: New: Added Checkstyle 8.21.</li>
+    <li>5.27.0: New: Added Checkstyle 8.20.</li>
+    <li>5.26.0: New: Added Checkstyle 8.19.</li>
+    <li>5.26.0: New: Now built against IDEA 2017.1.6 (was 2016.1).</li>
+    <li>5.26.0: Fixed: We no longer strip classpath file references that start with a slash (#437).</li>
+    <li>5.26.0: Fixed: Various UI fixes.</li>
+    <li>5.25.0: New: Added Checkstyle 8.17, 8.18 (#438).</li>
+    <li>5.24.3: Fixed: Blatant white areas in the panel when Darcula in use - thanks to @embee1981 (#432).</li>
+    <li>5.24.2: Fixed: Fixed a synchronisation edge-case (#425).</li>
+    <li>5.24.1: Fixed: Some tweaks to the supported Checkstyle versions for better compatibility - thanks to @tsjensen (#424).</li>
+    <li>5.24.0: Fixed: The plugin should now build &amp; run on JDK 11.</li>
+    <li>5.24.0: Fixed: We now handle exclamation marks in JAR paths (#412).</li>
+    <li>5.24.0: Fixed: Rules files are more consistently cached in memory to hopefully alleviate Windows file-locking issues (#417).</li>
+    <li>5.24.0: Fixed: New version dialogue display is now tracked at application level (#415).</li>
+    <li>5.24.0: New: Several versions of Checkstyle that have no reported compatibility options with newer versions have been dropped so as to reduce plugin size.</li>
+    <li>5.24.0: New: Added Checkstyle 8.14, 8.16 (#420).</li>
+    <li>5.23.0: New: Added Checkstyle 8.13.</li>
+    <li>5.23.0: Fixed: Error highlighting should be better mapped to IDEA settings (#411).</li>
+    <li>5.22.1: New: Parse error messages are now displayed more sensibly (#409).</li>
+    <li>5.22.0: New: Added Checkstyle 8.12.</li>
+    <li>5.21.1: Fixed: Removed project path detokentisation, instead relying on IDEA's built-in support (#404).</li>
+    <li>5.21.0: Fixed: SAME_PACKAGE(n) is now handled when importing code styles (#377).</li>
+    <li>5.21.0: New: Rules files can now be loaded from the Checkstyle classpath (i.e. third-party JARs) (#400).</li>
+    <li>5.20.0: Fixed: Prevents the plugin from crashing when using SuppressionXpathFilter - thanks to @tduehr (#397).</li>
+    <li>5.20.0: New: Added Checkstyle 8.10.1, 8.11.</li>
+    <li>5.19.1: Fixed: Exception when rules file deleted (#396).</li>
+    <li>5.19.0: New: Added Checkstyle 8.9, 8.10.</li>
+    <li>5.18.6: Fixed: adding a new location should now use the Checkstyle version selected in the configuration panel.</li>
+    <li>5.18.5: New: extensions to API to support TestRoots Watchdog (#388).</li>
+    <li>5.18.4: New: added external API class (#388).</li>
+    <li>5.18.3: Fixed: the CustomImportOrder importer now deals with the absence of customImportOrderRules (#387).</li>
+    <li>5.18.2: Fixed: JavadocPackageCheck should work again (#385).</li>
+    <li>5.18.1: Fixed: Exceptions caught by scan action should now appear in the event log (#383).</li>
+    <li>5.18.1: Fixed: Added missing DTDs (#381).</li>
+    <li>5.18.0: New: Added Checkstyle 8.8.</li>
+    <li>5.17.1: Fixed: Moved update tracking to workspace.</li>
+    <li>5.17.0: New: Now built against IDEA 2016.1 (was 15.0.6).</li>
+    <li>5.16.3: New: Improved support for CustomImportOrder (#362). Thanks to Joey Lee (@yeoji).</li>
+    <li>5.16.3: New: Plugin will notify user on update and point at release notes (#373).</li>
+    <li>5.16.2: Fixed: Violations now include rule name in the static scan only (#371).</li>
+    <li>5.16.1: Fixed: DTDs pointing at sourceforge no longer trigger a live lookup (#280).</li>
+    <li>5.16.0: New: Added CheckStyle 8.6, 8.7.</li>
+    <li>5.16.0: Fixed: Plugin will now work if in the pre-installed plugin dir (#368).</li>
+    <li>5.15.0: New: Added CheckStyle 8.5 (#366).</li>
+    <li>5.14.0: New: Libraries can now be copied, to solve locking issues on Windows (#263). Thanks, yet again, to Thomas Jenson (@tsjenson).</li>
+    <li>5.13.0: New: Project-relative configurations in the default settings aren't loaded until we're in a project (#333).</li>
+    <li>5.13.0: Fixed: HTTP reader now has a 5s timeout (#360).</li>
+    <li>5.13.0: Fixed: More errors should be logged to the event log.</li>
+    <li>5.12.1: Fixed: Class loading issues that broke JavaDoc checks in Android Studio 3 should now be resolved (#352).</li>
+    <li>5.12.0: New: Added CheckStyle 8.4.</li>
+    <li>5.12.0: Fixed: Improved feedback when checker cannot be created.</li>
+    <li>5.11.0: New: Added CheckStyle 8.3.</li>
+    <li>5.10.2: New: Checkstyle version numbers now descend, leaving the most useful versions at the top - thanks to @tsjensen (#351).</li>
+    <li>5.10.2: Fixed: Fully qualified checks with paths are now resolved properly (#349).</li>
+    <li>5.10.2: Fixed: File normalisation was broken on Windows - thanks to @tsjensen (#351).</li>
+    <li>5.10.2: Fixed: Test paths on newer versions of IntelliJ should be corrected detected - thanks to @tsjensen  (#351).</li>
+    <li>5.10.1: Fixed: Version check should now work on Java 9 (#346).</li>
+    <li>5.10.1: Fixed: Modified file results not shown when basedir was configured (#345).</li>
+    <li>5.10.0: New: Added CheckStyle 8.2 (#343).</li>
+    <li>5.9.1: New: Cleaned up patch releases of Checkstyle (#340). Thanks, again, to Thomas Jenson (@tsjenson).</li>
+    <li>5.9.0: New: Added CheckStyle 8.1 (#338).</li>
+    <li>5.8.2: Fixed: Parent of properties dialogue is now correct (#334).</li>
+    <li>5.8.2: Fixed: Parse stream errors now correctly show the root exception (#331).</li>
+    <li>5.8.2: Fixed: Property-only changes are now correctly detected when checking configuration modification state (#331).</li>
+    <li>5.8.2: New: We attempt to resolve rules files as project relative in the configuration dialogue (#333).</li>
+    <li>5.8.1: Fixed: Resolved cyclic dependency issue. Thanks to Thomas Jensen (@tsjensen) (#327).</li>
+    <li>5.8.0: New: Bundled Sun/Google checks are now read from selected version of Checkstyle. Thanks to Thomas Jensen (@tsjensen) (#320).</li>
+    <li>5.7.0: New: Added CheckStyle 8.0.</li>
+    <li>5.7.0: Fixed: short identifiers are used in temporary file names to assist with path limits on Windows.</li>
+    <li>5.6.2: New: code style importer now support avoid star imports - thanks to @zentol (#319).</li>
+    <li>5.6.2: New: temporary files are now created relative to the project base where possible (#321).</li>
+    <li>5.6.1: New: code style importer now supports import order - thanks to @zentol (#314).</li>
+    <li>5.6.1: Fixed: code style importer now adds an extra line between leading content and the package declaration (#315).</li>
+    <li>5.6.1: Fixed: improved housekeeping when Windows projects are not on the system drive (#313).</li>
+    <li>5.6.0: New: Added CheckStyle 7.8.1.</li>
+    <li>5.6.0: Fixed: we now try to use a temporary dir in the project folder when the projects is not on the system drive (#302).</li>
+    <li>5.5.1: New: File paths are now trimmed (#308).</li>
+    <li>5.5.0: New: Added CheckStyle 7.7 (#305).</li>
+    <li>5.4.0: New: Added CheckStyle 7.6.1 (#303).</li>
+    <li>5.3.1: Fixed: Paths from Checkstyle are now normalised (#302).</li>
+    <li>5.3.0: New: Added CheckStyle 7.6 (#300).</li>
+    <li>5.3.0: Fixed: Ignored problems are no longer counting for pre-checkin scan (#299).</li>
+    <li>5.2.0: New: Added CheckStyle 7.5.1 (#296).</li>
+    <li>5.2.0: Fixed: Ignored problems are excluded from the inspection results (#287).</li>
+    <li>5.1.4: Fixed: Ignored problems no longer create phantom nodes in the results view (#287).</li>
+    <li>5.1.3: Fixed: Supporting file lookup should be consistent when adding files (#293).</li>
+    <li>5.1.2: Fixed: Property defaults should now work again.</li>
+    <li>5.1.2: Fixed: Logging classes are now included in the local classpath to hopefully avoid oddities such as #294.</li>
+    <li>5.1.1: Fixed: Improved handling of cached checkers. Thanks to Thomas Jensen (@tsjensen) (#292).</li>
+    <li>5.1.0: Fixed: Third-party check now work again. Thanks to Thomas Jensen (@tsjensen) (#286).</li>
+    <li>5.1.0: New: Added CheckStyle 7.5.</li>
+    <li>5.0.1: Fixed: Improved handling of IOExceptions from rules files (#285).</li>
+    <li>5.0.0: New: You can now choose the version of Checkstyle to use. All credit to Thomas Jensen (@tsjensen) (#281).</li>
+    <li><em>For older changes please see the README.</em></li>
+</ul>
+        
+    ]]></change-notes><idea-version min="n/a" max="n/a" since-build="181.5684.4"></idea-version><depends>com.intellij.modules.java</depends><tags>Inspection</tags></idea-plugin><idea-plugin downloads="2798" size="3768" date="1182279382000" updatedDate="1182279382000" url=""><name>Final modifier</name><id>Final modifier</id><description><![CDATA[Auto insert 'final' modifier]]></description><version>1.1</version><vendor email="" url="">Pavel Isakov</vendor><rating>00</rating><change-notes><![CDATA[]]></change-notes><idea-version min="n/a" max="n/a" since-build="40.3000"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="8230" size="806701" date="1198277202000" updatedDate="1198277202000" url=""><name>InspectorGroovy</name><id>InspectorGroovy</id><description><![CDATA[More than 90 automated code inspections for the Groovy language]]></description><version>1.0</version><vendor email="" url="">Dave Griffith</vendor><rating>3.2</rating><change-notes><![CDATA[]]></change-notes><idea-version min="n/a" max="n/a" since-build="69.7000"></idea-version><depends>org.intellij.groovy</depends><tags>Inspection</tags></idea-plugin><idea-plugin downloads="766" size="78302" date="1223910910000" updatedDate="1223910910000" url=""><name>Message key usage plugin</name><id>Message key usage plugin</id><description><![CDATA[
+        This plugin will find message key unused inside property files. It will simplify the task of determine
+        missing text keys usages or unused ones.
+        Also you can specify search scope (file owner module, whole project, project and libraries), and a regular expression to format or clean
+        properties keys.
+        This new feature is under "Analyze" main menu.
+         
+    ]]></description><version>1.0</version><vendor email="scuellar at users.sourceforge.net" url="">Sergio Cuellar</vendor><rating>00</rating><change-notes><![CDATA[]]></change-notes><idea-version min="n/a" max="n/a" since-build="40.3000"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="1411" size="7548" date="1212698236000" updatedDate="1212698236000" url=""><name>ATG Inspections</name><id>ATG Inspections</id><description><![CDATA[
+    Provides inspections specific to ATG environment.
+    
+    ]]></description><version>1.2.1</version><vendor email="" url="">Todd Breiholz</vendor><rating>00</rating><change-notes><![CDATA[1.2.1 - Code cleanup and better exception handling]]></change-notes><idea-version min="n/a" max="n/a" since-build="69.7000"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="1081" size="14390" date="1226845111000" updatedDate="1226845157000" url=""><name>Equals/hashCode field inspection</name><id>Equals/hashCode field inspection</id><description><![CDATA[Inspects fields which have not been used in the equals and hashCode method.]]></description><version>1.01</version><vendor email="anayak007+equalsnhashcode@gmail.com" url="https://code.google.com/archive/p/equalsnhashcode">Anay Nayak</vendor><rating>4.2</rating><change-notes><![CDATA[
+        ]]></change-notes><idea-version min="n/a" max="n/a" since-build="80.8000"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="687" size="22025" date="1268909966000" updatedDate="1268909966000" url=""><name>DevUtil Inspections</name><id>DevUtil Inspections</id><description><![CDATA[
+        A set of new inspections to use with the devUtil library annotations.
+    ]]></description><version>0.22</version><vendor email="pierredeman59@gmail.com" url="https://sourceforge.net/projects/intellijdevutil/">Venom
+    </vendor><rating>00</rating><change-notes><![CDATA[
+        ]]></change-notes><idea-version min="n/a" max="n/a" since-build="80.8000"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="7886" size="5364024" date="1577714931000" updatedDate="1577714931000" url=""><name>CodeNarc</name><id>CodeNarc</id><description><![CDATA[<b>CodeNarc</b> analyzes Groovy code for defects, bad practices, inconsistencies, style issues and more.
+A flexible framework for rules, rulesets and custom rules means it's easy to configure CodeNarc to
+fit into your project. Build tool, framework support, and report generation are all enterprise ready.
+]]></description><version>4.3.1</version><vendor email="" url="http://twitter.com/DanielDemus">Daniel Demus, originally Cédric Champeau</vendor><rating>4.6</rating><change-notes><![CDATA[<b>Version 4.3.1</b>
+<ul>
+    <li>Fix some warnings and a deprecation reported by jetbrains verifier</li>
+</ul>
+<b>Version 4.3.0</b>
+<ul>
+    <li>Merge the CodeNarc-Updated plugin back into the CodeNarc and force replacement</li>
+    <li>Collapse the configuration in Inspections to one node with subnodes for each ruleset</li>
+    <li>Squash another null reference exception</li>
+</ul>
+<b>Version 4.2.1</b>
+<ul>
+<li>Improve the texts shown on the inspections configuration panels</li>
+<li>Link to the rule-description at the codenarc website from the inspections configuration panel</li>
+</ul>
+<b>Version 4.2.0</b>
+<ul>
+<li>New CodeNarc, new plugin.CodeNarc v1.4</li>
+</ul>
+<b>Version 4.1.2</b>
+<ul>
+<li>Fix more range out of bounds exceptions</li>
+</ul>
+<b>Version 4.1.1</b>
+<ul>
+<li>Respect @SurpressWarnings</li>
+<li>Prevent some index out of bounds exceptions</li>
+</ul>
+<b>Version 4.1.0</b>
+<ul>
+<li>Expose the codenarc rule configuration in the IDEA inspection settings dialog</li>
+<li>Improve the ranges that are highlighted</li>
+</ul>
+<b>Version 4.0.0</b>
+<ul>
+<li>Updating to use the latest CodeNarc - 1.3</li>
+<li>Additionally the lists of inspections is extracted directly from the embedded codenarc jar</li>
+<li>All original code is from Cédric Champeau and Sean LeBlanc</li>
+</ul>
+<b>Version 3.1</b>
+<ul>
+<li>Updating to work in newer IntelliJ version(s) (Sean LeBlanc) and using latest CodeNarc - 0.27.0</li>
+<li>All original code is from Cédric Champeau</li>
+</ul>
+<b>Version 0.1.17</b>
+<ul>
+<li>Upgrade to CodeNarc 0.17</li>
+<li>Upgrade to GMetricts 0.6</li>
+<li>Works with Intellij 11/12</li>
+</ul>
+<b>Version 0.1.16.1</b>
+<ul>
+<li>Upgrade to CodeNarc 0.16.1</li>
+</ul>
+<b>Version 0.1.14.1</b>
+<ul>
+<li>Upgrade to CodeNarc 0.14</li>
+<li>Inspections are now grouped by ruleset</li>
+</ul>
+<b>Version 0.1.14</b>
+<ul>
+<li>Fixed NPE on empty files or newly created files</li>
+<li>Fixed NPE when a CodeNarc rule doesn't set a line number</li>
+</ul>
+<b>Version 0.1.13</b>
+<ul>
+<li>Upgrade to CodeNarc 0.13</li>
+</ul>
+<b>Version 0.1.1</b>
+<ul>
+<li>Performance improvements</li>
+<li>Fixed inspections not shown if an editor wasn't open on file</li>
+</ul>
+<b>Version 0.1</b>
+<ul>
+<li>Initial release</li>
+<li>Integrates CodeNarc 0.12</li>
+</ul>
+]]></change-notes><idea-version min="n/a" max="n/a" since-build="192.4147"></idea-version><depends>com.intellij.modules.java</depends><depends>org.intellij.groovy</depends><tags>Inspection</tags></idea-plugin><idea-plugin downloads="2886" size="24714" date="1513177151000" updatedDate="1513177151000" url="https://github.com/stokito/IdeaSingletonInspection"><name>Singleton Inspection</name><id>SingletonInspection</id><description><![CDATA[<p>This inspection reports about (probably) inappropriate use of <a href="https://en.wikipedia.org/wiki/Singleton_pattern" rel="nofollow">Singleton pattern</a>.</p> 
+<p>Just write <code>getInstance()</code> method, and this inspection will check this class like a Singleton.</p> 
+<p>Singleton class should be checked for next errors: </p>
+<ul> 
+ <li>Class should be final.</li> 
+ <li>Class should have private constructor.</li> 
+ <li><code>getInstance()</code> method must be public and static and return instance of its class.</li> 
+</ul> 
+<p></p>]]></description><version>1.3</version><vendor email="stokito@gmail.com" url="https://stokito.name/">Sergey Ponomarev</vendor><rating>00</rating><change-notes><![CDATA[#6 Fixed exception Short name 'Singleton' is not unique See release info for details https://github.com/stokito/IdeaSingletonInspection/releases/tag/v1.3]]></change-notes><idea-version min="n/a" max="n/a" since-build="123.169"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="1514" size="165691" date="1406469891000" updatedDate="1406469891000" url=""><name>CodeInterview</name><id>CodeInterview</id><description><![CDATA[CodeInterview Plugin is an IDEA version of the codeinterview.me functionality. Candidates can code in their IDE and the plugin synchronizes the contents of your editors with the CodeInterview site.]]></description><version>1.0.3</version><vendor email="info@codeinterview.me" url="https://codeinterview.me/">CodeInterview</vendor><rating>4.5</rating><change-notes><![CDATA[]]></change-notes><idea-version min="n/a" max="n/a" since-build="80.8000"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="458" size="9187" date="1330423913000" updatedDate="1330423913000" url=""><name>EDTOnlyInspection</name><id>EDTOnlyInspection</id><description><![CDATA[Determine if proper precautions are taken if code uses the @EDTOnly annotation]]></description><version>1.0</version><vendor email="" url="">WhileLife.com</vendor><rating>00</rating><change-notes><![CDATA[Determines if methods annotated with an EDT Only annotation properly check that the method is, in fact, being called on the EDT.]]></change-notes><idea-version min="n/a" max="n/a" since-build="80.8000"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="3509" size="5388246" date="1390898789000" updatedDate="1390898789000" url=""><name>CodeNarc-IDEA</name><id>com.junbo.idea.codenarc</id><description><![CDATA[<p> This plugin provides both real-time and on-demand scanning of Groovy files with CodeNarc 0.20 from within IDEA. </p>]]></description><version>0.0.1-SNAPSHOT</version><vendor email="" url="">com.junbo</vendor><rating>4.5</rating><change-notes><![CDATA[]]></change-notes><idea-version min="n/a" max="n/a" since-build="133.331"></idea-version><depends>org.intellij.groovy</depends><tags>Inspection</tags></idea-plugin><idea-plugin downloads="20224" size="10619" date="1463231748000" updatedDate="1463231748000" url=""><name>Zero Width Characters locator</name><id>com.ultrahob.zerolength.plugin</id><description><![CDATA[Inspired by 
+<a href="http://stackoverflow.com/q/9868796/579828" rel="nofollow">this question</a> on Stack Overflow - this plugin adds an inspection that prevents some hard to find bugs related to invisible zero width characters in source code and resources.]]></description><version>0.93</version><vendor email="" url="https://github.com/harley84/ZeroLengthRadar">Victor Rosenberg</vendor><rating>4.9</rating><change-notes><![CDATA[Added line separator (\u2028) to inspection - thanks @ookami-kb]]></change-notes><idea-version min="n/a" max="n/a" since-build="145.0"></idea-version><depends>com.intellij.modules.lang</depends><tags>Inspection</tags></idea-plugin><idea-plugin downloads="16306" size="941377" date="1451043262000" updatedDate="1451043262000" url=""><name>RuboCop</name><id>io.github.sirlantis.rubymine.rubocop</id><description><![CDATA[The plugin displays the errors from RuboCop as annotations.]]></description><version>3.1.0</version><vendor email="marceljackwerth@gmail.com" url="https://twitter.com/sirlantis">Marcel Jackwerth</vendor><rating>2.9</rating><change-notes><![CDATA[Reworked Bundler/RVM/rbenv support + run also when no .rubocop.yml lis found]]></change-notes><idea-version min="n/a" max="n/a" since-build="143.0"></idea-version><depends>com.intellij.modules.lang</depends><tags>Inspection</tags></idea-plugin><idea-plugin downloads="7513" size="67290" date="1449625669000" updatedDate="1449625669000" url=""><name>Code Litter</name><id>com.aconex.codelitter</id><description><![CDATA[Show existing Checkstyle, PMD and FindBugs violations in: 
+<ul> 
+ <li>selected files</li> 
+ <li>uncommitted files (git only)</li> 
+ <li>unpushed commits (git only)</li> 
+</ul> Invoke by Analyze - Code Quality in modified files.]]></description><version>1.5</version><vendor email="dvishnyakov@aconex.com" url="https://www.aconex.com/">Aconex</vendor><rating>00</rating><change-notes><![CDATA[<ul> 
+ <li>1.0 Initial version</li> 
+ <li>1.1 Configurable paths</li> 
+ <li>1.2 Paths can be edited directly</li> 
+ <li>1.3 More robust way to read malformed files</li> 
+ <li>1.4 Persist manually edited paths</li> 
+ <li>1.5 Support for Findbugs synthetic bug instances</li> 
+</ul>]]></change-notes><idea-version min="n/a" max="n/a" since-build="131.0"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="1357" size="3550559" date="1426181759000" updatedDate="1426181759000" url=""><name>BPELlint-idea</name><id>com.bpellint.idea</id><description><![CDATA[Validates WS-BPEL 2.0 and WSDL 1.1 files using 71 of the 95 static analysis rules of the WS-BPEL 2.0 specification.]]></description><version>0.2-alpha</version><vendor email="simon.harrer@gmail.com" url="https://about.me/sharrer">Simon Harrer</vendor><rating>4.5</rating><change-notes><![CDATA[Initial Release
+<br /> 
+<em>Supports 71 static analysis rules </em>]]></change-notes><idea-version min="n/a" max="n/a" since-build="139.0"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="12805" size="25812" date="1431880100000" updatedDate="1431880100000" url=""><name>ButterKnife Inspections</name><id>dk.erikzielke.android.butterknife.inspections</id><description><![CDATA[This plugin detect shows inspections for common mistakes using ButterKnife. For now the problems detected are: 
+<ul> 
+ <li>No call to ButterKnife.inject</li> 
+ <li>That a field exists in all layouts or is optional</li> 
+ <li>That the type of the field matches in all views</li> 
+</ul> 
+<p>The detection for which layouts to check for matching ids is based on the following: </p>
+<ul> 
+ <li>Each setContentView call in onCreate of an activity</li> 
+ <li>Each inflate in onCreateView in a Fragment</li> 
+ <li>Each inflate in each constructor in a View</li> 
+ <li>Trying to figure out for ViewHolders by data flow analysis and find usages</li> 
+</ul> 
+<p></p>]]></description><version>0.1.2</version><vendor email="erikzielke@hotmail.com" url="">Erik Zielke</vendor><rating>00</rating><change-notes><![CDATA[support for included xmls support for ViewHolder-pattern]]></change-notes><idea-version min="n/a" max="n/a" since-build="131.0"></idea-version><depends>com.intellij.modules.lang</depends><depends>org.jetbrains.android</depends><tags>Inspection</tags></idea-plugin><idea-plugin downloads="267" size="12512" date="1462030164000" updatedDate="1462030164000" url=""><name>HungarianInspection</name><id>com.kogitune</id><description><![CDATA[This plugin provides hungarian notation inspection .]]></description><version>1.0.2</version><vendor email="takam.dev@gmail.com" url="https://github.com/takahirom/HungarianInspectionPlugin">takahirom</vendor><rating>4.5</rating><change-notes><![CDATA[1.0.2 Android Studio 2.0 Support(Experimental) 1.0.1 first release
+<br>]]></change-notes><idea-version min="n/a" max="n/a" since-build="131.0"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="2421" size="6642675" date="1539767947000" updatedDate="1539767947000" url=""><name>WatchDog</name><id>nl.tudelft.watchdog</id><description><![CDATA[
+    Do you as a Java developer know, how much time you spent on testing and debugging your application? Do you know how much time you actually write new code, and how long you browse through existing code? Do you know what activities you actually perform during a debugging session?
+    <br>
+    Then install TestRoots WatchDog!<br>
+    WatchDog assess your development behavior, which tests you write (Junit, Mockito, Powermock and others) and gives you answers to the above questions. WatchDog comes with the "WatchDog Statistics" view that displays the answers in easy-to-understand diagrams and immediate statistics on your development habits.<br>
+    <br>
+    We support all current versions of Junit (Junit3 and Junit4), and we measure developer testing, system testing and integration testing time (so long as you name your Test classes ending in Test, or have includes to Junit, Mockito or Powermock in them).
+    ]]></description><version>3.2.0</version><vendor email="info@testroots.org" url="http://www.testroots.org">TestRoots, TU Delft</vendor><rating>3.8</rating><change-notes><![CDATA[
+      3.2.0<br>
+      Maintenance release:<br>
+      - Fix startup problem of Eclipse;<br>
+      - Solve possible freezes;<br>
+      - Make WatchDog more performant;<br><br>
+
+      3.1.0<br>
+      Feature release:<br>
+      - Include new slider experiment;<br><br>
+    
+      3.0.0<br>
+      Feature release:<br>
+      - Adds support for tracking static analysis warning behavior;<br>
+      - Update internal architecture and streamline registration process;<br><br>
+
+      2.0.0<br>
+      Feature release:<br>
+      - Adds support for tracking debugging behavior;<br>
+      - Adds a visualization of the tracked debugging activities to the "WatchDog Statistics" view.<br><br>
+
+      1.7.0<br>
+      Maintenance release:<br>
+      - Adds Android Studio support;<br>
+      - Makes WD much faster when working with large files (improvements in Levenshtein distance calculation);<br>
+      - Fixes bug of not registering all intervals.<br><br>
+
+      1.6.0<br>
+      Maintenance release:<br>
+      - Added support for multiple projects opened at the same time;<br>
+      - Improved registration process (especially when unsuccessful, thanks to Alan Richardson from eviltester.com);<br>
+      - Some back-end optimizations.<br><br>
+
+      1.5.0<br>
+      Maintenance release:<br>
+      - Refactored back-end architecture;<br>
+      - Version is now synchronized across platforms;<br>
+      - Small bug fixes. <br><br>
+
+      0.9.1<br>
+      Few minor issues fixed:<br>
+      - JUnit interval format unified;<br>
+      - Removed unused listeners.
+    
+    ]]></change-notes><idea-version min="n/a" max="n/a" since-build="139.0"></idea-version><depends>com.intellij.modules.java</depends><tags>Inspection</tags></idea-plugin><idea-plugin downloads="20272" size="2465543" date="1436505055000" updatedDate="1436505055000" url=""><name>Spell Checker Spanish Dictionary</name><id>SpellChecker-Dict-Spanish</id><description><![CDATA[Standard Spanish dictionary for Spell Checker plugin]]></description><version>1.0</version><vendor email="" url="">Sergio de EOM Design Group - www.e-om.com.ar</vendor><rating>4.5</rating><change-notes><![CDATA[]]></change-notes><idea-version min="n/a" max="n/a" since-build="72.7269"></idea-version><depends>SpellChecker</depends><tags>Inspection</tags></idea-plugin><idea-plugin downloads="13747" size="16766" date="1496525463000" updatedDate="1496525463000" url=""><name>Hibernate Inspections</name><id>marcglasberg.HibernateInspectionsPlugin</id><description><![CDATA[Hibernate silently fails in certain situations, leading to bugs which are difficult to track down.
+<br> This plugin helps finding and fixing some of these problems. Under 
+<b>Settings &gt; Inspections &gt; Hibernate inspections</b> it adds the following inspections: 
+<ul> 
+ <li>Persisted class is final</li> 
+ <li>Final method of a persisted class uses direct field access</li> 
+ <li>Embeddable subclasses embeddable</li> 
+</ul>]]></description><version>1.1</version><vendor email="marcglasberg@gmail.com" url="">Marcelo Glasberg</vendor><rating>00</rating><change-notes><![CDATA[Hibernate silently fails in certain situations. Inspections: • Persisted class is final • Final method of a persisted class uses direct field access • Embeddable subclasses embeddable (NEW)]]></change-notes><idea-version min="n/a" max="n/a" since-build="139.0"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="5776" size="35957" date="1462655102000" updatedDate="1462655102000" url=""><name>Activity createIntent Inspection</name><id>com.github.shiraji.createintentinspection</id><description><![CDATA[This plugin add a custom inspection that checks Activity implements a public static method of creating its Intent. If Activity is abstract, it won't warn to implement the method.]]></description><version>0.1.0</version><vendor email="isogai.shiraji@gmail.com" url="https://github.com/shiraji">Shiraji</vendor><rating>00</rating><change-notes><![CDATA[<p>0.1.0</p> 
+<ul> 
+ <li>Add a config for the method name (#10)</li> 
+ <li>Fix the problem with importing Intent/Context</li> 
+</ul> 
+<p>0.0.2</p> 
+<ul> 
+ <li>Fix problem with Generic type parameters</li> 
+</ul> 
+<p>0.0.1</p> 
+<ul> 
+ <li>Initial release</li> 
+</ul>]]></change-notes><idea-version min="n/a" max="n/a" since-build="131.0"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="1742" size="35973" date="1462821295000" updatedDate="1462821295000" url=""><name>Fragment newInstance Inspection</name><id>com.github.shiraji.newinstanceinspection</id><description><![CDATA[This plugin add a custom inspection that checks Fragment implements a static method of creating its instance. If the class is abstract, it won't warn to implement newInstance method.]]></description><version>0.1.0</version><vendor email="isogai.shiraji@gmail.com" url="https://github.com/shiraji">Shiraji</vendor><rating>00</rating><change-notes><![CDATA[<p>0.1.0</p> 
+<ul> 
+ <li>Add a config for the method name (#6)</li> 
+</ul> 
+<p>0.0.2</p> 
+<ul> 
+ <li>Fix a problem with generic type parameter</li> 
+</ul> 
+<p>0.0.1</p> 
+<ul> 
+ <li>Initial release</li> 
+</ul>]]></change-notes><idea-version min="n/a" max="n/a" since-build="131.0"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="850" size="1853" date="1443650877000" updatedDate="1443650877000" url=""><name>Build and Lint</name><id>il.co.falk.buildAndLint</id><description><![CDATA[This plugin answers this 
+<a href="http://stackoverflow.com/q/32631131/5276890" rel="nofollow">question</a> in Stack Overflow.
+<br />]]></description><version>1.0</version><vendor email="no_support@falk.co.il" url="">YourCompany</vendor><rating>00</rating><change-notes><![CDATA[Initial version. No changes yet.]]></change-notes><idea-version min="n/a" max="n/a" since-build="131.0"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="1840117" size="50914939" date="1578653318000" updatedDate="1578653318000" url="http://www.sonarlint.org"><name>SonarLint</name><id>org.sonarlint.idea</id><description><![CDATA[
+        
+            <p>
+                SonarLint is an IDE extension that helps you detect and fix quality issues as you write code. 
+                Like a spell checker, SonarLint squiggles flaws so they can be fixed before committing code. 
+                You can get it directly from the IntelliJ IDEA Plugin Repository, and it will then detect new 
+                bugs and quality issues as you code (Java, Kotlin, Ruby, JavaScript, PHP and Python).
+            </p>
+            <p>
+                If your project is analyzed on SonarQube or on SonarCloud, SonarLint can connect to 
+                the server to retrieve the appropriate quality profiles and settings for that project. Java 8 
+                is required to run SonarLint.
+            </p>
+        
+      ]]></description><version>4.4.0.14142</version><vendor email="" url="http://www.sonarsource.com">SonarSource</vendor><rating>3.3</rating><change-notes><![CDATA[
+      <ul>
+        <li>4.4 - Ensure compatibility with JetBrains 2020.x release train. 22 new rules and engine improvements for Python. Support for PHP 7.4. New engine for JavaScript, 8 new rules.</li>
+        <li>4.3 - Supports SonarJS 6.x in connected mode. Updated issue type icons.</li>
+        <li>4.2 - Analyze HTML in Vue.js single file components. 8 new HTML rules. Support 'Ignore Issues on Files' and 'Ignore Issues in Blocks' in connected mode.</li>
+        <li>4.1.1 - Fix regression on quality profile in connected mode</li>
+        <li>4.1 - Enable analysis of HTML. Add support of XML in connected mode. 10 new Java rules.</li>
+        <li>4.0.2 - Fix error on startup registering actions affecting all IDEs other than IntelliJ</li>
+        <li>4.0.1 - Fix duplicated highlighting in WebStorm and connection to a server with more than 10k rules</li>
+        <li>4.0 - Improved matching of issues with SonarQube</li>
+        <li>3.5.1 - Fixed error with read access and repeated annotations</li>
+        <li>3.5 - Manage rules when not connected to SonarQube or SonarCloud</li>
+        <li>3.4.2 - Fix a regression in the SonarQube server configuration wizard</li>
+        <li>3.4.1 - Fix of several bugs: binding to SonarCloud organizations, support of Java 10, rendering of rule descriptions</li>
+        <li>3.4 - Update of embedded code analyzers. Fix analysis of files located outside of the project base directory</li>
+        <li>3.3 - Numerous improvements and UX enhancements.</li>
+        <li>3.2.1 - Bug fix for concurrent modification when all files of a module are excluded by server configuration</li>
+        <li>3.2 - Support excluding files from the automatic analysis</li>
+        <li>3.1 - Various minor improvements and bug fixes. Updated code analyzers.</li>
+        <li>3.0 - Avoid saving files when possible. Improve support of cancellation</li>
+        <li>2.10 - Support of SonarQube organizations</li>
+        <li>2.9 - New code analyzers included in standalone mode. Collection of usage statistics</li>
+        <li>2.8 - Analyze all files in project. New icons for issue types</li>
+        <li>2.7 - Display of secondary locations of issues</li>
+        <li>2.6 - Support of SSL certificates configured in IntelliJ</li>
+        <li>2.5 - Analysis of VCS changed files and notifications about binding update</li>
+        <li>2.4.3 - Bug fix for multi-module projects on Windows</li>
+        <li>2.4.2 - Fix resolved issues on windows and authentication</li>
+        <li>2.4.1 - Bug fix of Javascript in standalone mode.</li>
+        <li>2.4 - Hide issues that are resolved in SonarQube. Numerous bug fixes.</li>
+        <li>2.3.2 - Fix configuration of automatic trigger of analysis</li>
+        <li>2.3.1 - Bug fix for analysis configuration and performance improvements</li>
+        <li>2.3 - Support of exclusions in connected mode; Numerous bug fixes. Java 8 is now required to run SonarLint.</li>
+        <li>2.2 - Support of SonarQube LTS (4.5) and commercial plugins</li>
+        <li>2.1.1 - Bug fix for PHPStorm</li>
+        <li>2.1 - Various improvements and bug fixes</li>
+        <li>2.0.2 - Bug fix SLI-73</li>
+        <li>2.0.1 - Bug fixes</li>
+        <li>2.0 - Connect to a SonarQube server;</li>
+        <li>1.5 - Display SonarLint markers age;</li>
+        <li>1.4 - No internet required; Several bug fixes;</li>
+        <li>1.3 - Issues views; UI improvements;</li>
+        <li>1.2 - Automatic trigger of analysis; "NO SONAR" quick fix; configurable highlighting of issues;</li>
+        <li>1.1 - More precise issue location; trigger of analysis changed to on demand only; improved SonarLint console;</li>
+        <li>1.0 - On the fly SonarLint inspection</li>
+      </ul>
+      
+    ]]></change-notes><idea-version min="n/a" max="n/a" since-build="173.2099.1"></idea-version><depends>(optional) com.intellij.modules.java</depends><depends>com.intellij.modules.lang</depends><tags>Inspection</tags></idea-plugin><idea-plugin downloads="1655" size="19816" date="1459381208000" updatedDate="1459381208000" url=""><name>Robo Hexar</name><id>com.smilingrob.plugin.robohexar</id><description><![CDATA[I am the grammar robot. I have been activated. Missing punctuation and grammar will be punished.]]></description><version>1.11.2</version><vendor email="smilingrob@gmail.com" url="">Robert Wallis</vendor><rating>00</rating><change-notes><![CDATA[<li>1.11.2 - Lowered the severity of warnings, and made RoboHexar more human.</li> 
+<li>1.11.1 - No &quot;Java-Doc&quot; warnings on constructors. Test updates.</li> 
+<li>1.10 - Fix warning filter for testSomething() methods that are in test.</li> 
+<li>1.09 - No longer adding &quot;Java-Doc&quot; warnings to @Test methods.</li> 
+<li>1.08 - Warnings not errors.</li> 
+<li>1.07 - No longer adding &quot;Java-Doc&quot; warnings to getters and setters.</li> 
+<li>1.06 - No longer adding &quot;Java-Doc&quot; warnings methods with @Override.</li> 
+<li>1.05 - Added &quot;Java-Doc&quot; matcher.</li> 
+<li>1.04 - Fixed &quot;Capitalize&quot; error on @ params</li>]]></change-notes><idea-version min="n/a" max="n/a" since-build="131.0"></idea-version><depends>com.intellij.modules.lang</depends><tags>Inspection</tags></idea-plugin><idea-plugin downloads="638" size="3345468" date="1450330320000" updatedDate="1450330320000" url=""><name>Object Calisthenics Analyzer</name><id>com.chairbender.object_calisthenics_analyzer</id><description><![CDATA[A plugin for analyzing your Java code's adherence to 
+<a href="https://github.com/chairbender/object-calisthenics-analyzer" rel="nofollow">Object Calisthenics</a>.]]></description><version>0.95</version><vendor email="kwhipke1@gmail.com" url="https://github.com/chairbender">Kyle Hipke</vendor><rating>3.6</rating><change-notes><![CDATA[Fixed issue where it wouldn't report errors for some Java files in the project. Now displays progress indicator while running an analysis. It can now analyze and provide links for violations for any Java file in the project, regardless of whether it's on the compile path.]]></change-notes><idea-version min="n/a" max="n/a" since-build="133.0"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="123" size="17242" date="1449181696000" updatedDate="1449181696000" url=""><name>Set of inspections for check a getters</name><id>com.github.profeg.IntelliJGettersCheckInspections</id><description><![CDATA[Set of inspections for check getters.
+<br /> 
+<ul> 
+ <li>Check for name of a boolean property getter</li> 
+ <li>Check for a probably getter</li> 
+ <li>Check for a clashing getter names</li> 
+ <li>Check for a methods name started from modal verb and probably getter</li> 
+</ul> All inspections set off by default. So dont forget to swich it on.]]></description><version>1.0</version><vendor email="tnd.prof@gmail.com" url="https://tndprof.wordpress.com/">Oleksiy Ostanin</vendor><rating>00</rating><change-notes><![CDATA[First edition.
+<br />]]></change-notes><idea-version min="n/a" max="n/a" since-build="141.0"></idea-version><tags>Inspection</tags></idea-plugin><idea-plugin downloads="22855" size="13866" date="1523488325000" updatedDate="1523488325000" url=""><name>cppcheck</name><id>com.github.johnthagen.cppcheck</id><description><![CDATA[Cppcheck plugin for CLion. 
+<br> 
+<br> 
+<b>Features:</b> 
+<br> 
+<ul> 
+ <li>Runs cppcheck on the fly while you write code</li> 
+ <li>Highlights lines and displays cppcheck error messages</li> 
+ <li>Supports passing options to cppcheck</li> 
+</ul> 
+<br> 
+<b>Usage:</b> 
+<br> 
+<ul> 
+ <li> Install the <a href="http://cppcheck.sourceforge.net/" rel="nofollow">cppcheck tool</a> using directions on its homepage. This plugin does <b>not</b> bundle the cppcheck tool itself, which must be installed separately. </li> 
+ <li>Install this cppcheck 

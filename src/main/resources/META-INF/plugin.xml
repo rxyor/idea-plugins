@@ -1,0 +1,54 @@
+<idea-plugin>
+    <id>com.your.company.unique.plugin.id</id>
+    <name>Pom Assistant</name>
+    <version>1.0</version>
+    <vendor email="rxyor@outlook.com" url="hhttps://github.com/WangJi92/arthas-idea-plugin">Github
+    </vendor>
+
+    <description><![CDATA[
+        Tools of pom.<br>
+      <em>pom</em>
+    ]]>
+    </description>
+
+    <change-notes><![CDATA[
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!--        <group id="com.github.rxyor.plugin.pomhelper.SampleMenu" text="Sample Menu"-->
+        <!--            description="Sample menu">-->
+        <!--            <add-to-group group-id="MainMenu" anchor="last"/>-->
+        <!--            <action id="MenuAction.TextBoxes"-->
+        <!--                class="com.github.rxyor.plugin.pom.assistant.action.MenuAction" text="Text Boxes"-->
+        <!--                description="A test menu item"/>-->
+        <!--        </group>-->
+        <!-- Add your actions here -->
+        <action id="PomFileInfoAction"
+            class="com.github.rxyor.plugin.pom.assistant.action.PomFileInfoAction"
+            text="pom file info" description="show pom info">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+
+        <group id="PomAssistant" popup="true" text="Pom Assistant">
+            <add-to-group group-id="EditorPopupMenu" anchor="after"
+                relative-to-action="CopyReference"/>
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <reference ref="PomFileInfoAction"/>
+        </group>
+    </actions>
+
+</idea-plugin>

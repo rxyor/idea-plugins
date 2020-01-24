@@ -1,0 +1,30 @@
+<idea-plugin>
+  <id>com.your.company.unique.plugin.id</id>
+  <name>Pom Assistant</name>
+  <version>1.0-SNAPSHOT</version>
+  <vendor email="rxyor@outlook.com" url="hhttps://github.com/WangJi92/arthas-idea-plugin">Github
+    </vendor>
+  <description>
+        Tools of pom.&lt;br&gt;
+      &lt;em&gt;pom&lt;/em&gt;
+    
+    </description>
+  <change-notes>
+      Add change notes here.&lt;br&gt;
+      &lt;em&gt;most HTML tags may be used&lt;/em&gt;
+    
+    </change-notes>
+  <idea-version since-build="193.5662" until-build="193.*"/>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij"/>
+  <actions>
+    <action id="PomFileInfoAction" class="com.github.rxyor.plugin.pom.assistant.action.PomFileInfoAction" text="pom file info" description="show pom info">
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+    <group id="PomAssistant" popup="true" text="Pom Assistant">
+      <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="CopyReference"/>
+      <add-to-group group-id="ToolsMenu" anchor="first"/>
+      <reference ref="PomFileInfoAction"/>
+    </group>
+  </actions>
+</idea-plugin>
