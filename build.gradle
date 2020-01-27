@@ -14,10 +14,16 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven {
+        url 'https://dl.bintray.com/jetbrains/intellij-plugin-service'
+    }
 }
 
 intellij {
-    version '2019.3.1'
+    version 'IU-193.5662.53'
+    type 'IU'
+//    plugins = ['org.jetbrains.idea.maven']
+//    localPath '/Applications/IntelliJ IDEA.app'
 }
 
 dependencies {
@@ -27,5 +33,4 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.2'
 
     compile group: 'com.google.guava', name: 'guava', version: '23.0'
-    compile files('lib/maven.jar')
 }
