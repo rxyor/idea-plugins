@@ -27,4 +27,5 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.2'
 
     compile group: 'com.google.guava', name: 'guava', version: '23.0'
+    compile files('lib/maven.jar')
 }

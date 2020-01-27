@@ -29,17 +29,9 @@
     </extensions>
 
     <actions>
-        <!--        <group id="com.github.rxyor.plugin.pomhelper.SampleMenu" text="Sample Menu"-->
-        <!--            description="Sample menu">-->
-        <!--            <add-to-group group-id="MainMenu" anchor="last"/>-->
-        <!--            <action id="MenuAction.TextBoxes"-->
-        <!--                class="com.github.rxyor.plugin.pom.assistant.action.MenuAction" text="Text Boxes"-->
-        <!--                description="A test menu item"/>-->
-        <!--        </group>-->
-        <!-- Add your actions here -->
         <action id="PomFileInfoAction"
             class="com.github.rxyor.plugin.pom.assistant.action.PomFileInfoAction"
-            text="pom file info" description="show pom info">
+            text="sort" description="show pom info">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
         </action>
 
@@ -51,4 +43,5 @@
         </group>
     </actions>
 
+    <depends>org.jetbrains.idea.maven</depends>
 </idea-plugin>
