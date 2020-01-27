@@ -17,7 +17,6 @@ import org.jetbrains.idea.maven.project.MavenProjectsManager;
  */
 public class MavenUtil {
 
-
     public static MavenProject getMavenProject(Project project, VirtualFile file) {
         Preconditions.checkNotNull(project, "project can't be null");
         Preconditions.checkNotNull(file, "file can't be null");

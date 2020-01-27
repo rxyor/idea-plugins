@@ -2,3 +2,6 @@
 # compile
 build
 target
+.gradle
+out
+.idea
