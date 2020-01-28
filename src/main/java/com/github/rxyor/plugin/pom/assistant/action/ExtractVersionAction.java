@@ -1,13 +1,14 @@
 package com.github.rxyor.plugin.pom.assistant.action;
 
-import com.github.rxyor.plugin.pom.assistant.common.util.MavenUtil;
+import com.google.common.base.Preconditions;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.PlatformDataKeys;
+import com.intellij.openapi.actionSystem.CommonDataKeys;
+import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.DumbAwareAction;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiFile;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.idea.maven.project.MavenProject;
 
 /**
  *<p>
@@ -22,10 +23,15 @@ public class ExtractVersionAction extends DumbAwareAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        VirtualFile virtualFile = e.getData(PlatformDataKeys.VIRTUAL_FILE);
-        Project project = e.getProject();
+        Editor editor = e.getData(CommonDataKeys.EDITOR);
+        PsiFile psiFile = e.getData(CommonDataKeys.PSI_FILE);
 
-        MavenProject mvnProject = MavenUtil.getMavenProject(project, virtualFile);
-        System.out.println(mvnProject);
+        VirtualFile virtualFile = Optional.ofNullable(psiFile)
+            .map(PsiFile::getVirtualFile).orElse(null);
+
+        Preconditions.checkNotNull(editor, "editor can't be null");
+        Preconditions.checkNotNull(psiFile, "psiFile can't be null");
+
+        int offset = editor.getCaretModel().getOffset();
     }
 }
