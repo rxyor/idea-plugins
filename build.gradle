@@ -23,8 +23,10 @@ repositories {
 }
 
 intellij {
-    version 'IU-193.5662.53'
-    plugins = ['maven','org.jetbrains.idea.maven']
+    version '193.5662.53'
+    type 'IU'
+//    version '2019.3.1'
+//    plugins = ['maven']
 //    plugins = ['org.jetbrains.idea.maven']
 //    localPath '/Applications/IntelliJ IDEA.app'
 }
