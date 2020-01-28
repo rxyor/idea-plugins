@@ -1,0 +1,56 @@
+<idea-plugin version="2">
+    <id>com.github.rxyor.plugin.pom.assistant</id>
+    <name>Pom Assistant</name>
+    <version>1.0</version>
+    <vendor email="rxyoryor@gmail.com" url="https://github.com/WangJi92/arthas-idea-plugin">HDU</vendor>
+
+    <description><![CDATA[
+    ]]></description>
+
+    <change-notes><![CDATA[
+    ]]>
+    </change-notes>
+
+    <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="2019.3.1"/>
+
+    <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+    <depends>org.jetbrains.idea.maven</depends>
+
+
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+    <application-components>
+    </application-components>
+
+    <project-components>
+    </project-components>
+
+    <actions>
+        <action id="PomFileInfoAction"
+            class="com.github.rxyor.plugin.pom.assistant.action.PomFileInfoAction"
+            text="sort" description="show pom info">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+
+        <action id="ExtractVersionAction"
+            class="com.github.rxyor.plugin.pom.assistant.action.ExtractVersionAction"
+            text="extract version" description="extract version and replace placeholder">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+
+        <group id="PomAssistant" popup="true" text="Pom Assistant">
+            <add-to-group group-id="EditorPopupMenu" anchor="after"
+                relative-to-action="CopyReference"/>
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <reference ref="PomFileInfoAction"/>
+            <reference ref="ExtractVersionAction"/>
+        </group>
+    </actions>
+
+</idea-plugin>
