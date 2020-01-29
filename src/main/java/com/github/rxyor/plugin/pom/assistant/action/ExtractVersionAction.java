@@ -1,11 +1,15 @@
 package com.github.rxyor.plugin.pom.assistant.action;
 
+import com.github.rxyor.plugin.pom.assistant.common.model.XmlDependency;
+import com.github.rxyor.plugin.pom.assistant.common.util.MavenUtil;
+import com.github.rxyor.plugin.pom.assistant.common.util.NotificationUtil;
 import com.google.common.base.Preconditions;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.DumbAwareAction;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
@@ -33,5 +37,17 @@ public class ExtractVersionAction extends DumbAwareAction {
         Preconditions.checkNotNull(psiFile, "psiFile can't be null");
 
         int offset = editor.getCaretModel().getOffset();
+        PsiElement element = psiFile.findElementAt(offset);
+
+        if (element == null) {
+            NotificationUtil.warn("Pom Assistant", "please select valid pom.xml node");
+            return;
+        }
+
+        XmlDependency xmlDependency = MavenUtil.parseXmlDependency(element);
+        PsiElement parentElement = element.getParent();
+        System.out.println(element);
     }
+
+
 }
