@@ -4,12 +4,14 @@ import com.github.rxyor.plugin.pom.assistant.common.constant.PluginConst.File.Sp
 import com.github.rxyor.plugin.pom.assistant.common.model.XmlDependency;
 import com.google.common.base.Preconditions;
 import com.intellij.lang.ASTNode;
+import com.intellij.lang.xml.XMLLanguage;
 import com.intellij.openapi.fileTypes.StdFileTypes;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.xml.XmlFile;
+import com.intellij.psi.xml.XmlTag;
 import com.intellij.psi.xml.XmlToken;
 import org.jetbrains.idea.maven.project.MavenProject;
 import org.jetbrains.idea.maven.project.MavenProjectsManager;
@@ -56,12 +58,29 @@ public class MavenUtil {
 
         if (element instanceof XmlToken) {
             PsiFile psiFile = element.getContainingFile();
+            XmlFile xmlFile = getXmlFile(psiFile);
+            XmlTag rootTag = xmlFile.getDocument().getRootTag();
+            rootTag.getSubTags();
             Project project = psiFile.getProject();
             ASTNode node = element.getNode();
             System.out.println(node);
         }
         XmlFile xmlFile;
         return new XmlDependency();
+    }
+
+    public static XmlFile getXmlFile(PsiFile psiFile) {
+        Preconditions.checkNotNull(psiFile, "psiFile can't be null");
+
+        PsiFile xmlFile = psiFile.getViewProvider().getPsi(XMLLanguage.INSTANCE);
+        if (xmlFile == null) {
+            throw new IllegalArgumentException("xml file not exists");
+        }
+        if (!(xmlFile instanceof XmlFile)) {
+            throw new IllegalArgumentException(String.format("[%s] is not valid xml file", psiFile.getName()));
+        } else {
+            return (XmlFile) xmlFile;
+        }
     }
 
 }
