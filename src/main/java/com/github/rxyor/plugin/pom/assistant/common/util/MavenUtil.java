@@ -94,6 +94,10 @@ public class MavenUtil {
         }
     }
 
+    public static void addPropertiesSubTag(XmlFile xmlFile){
+        Preconditions.checkNotNull(xmlFile, "xmlFile can't be bu null");
+    }
+
     private static XmlDependency findTargetElement(PsiElement element) {
 
         List<TagTextPair> tagTextPairList = new ArrayList<>(8);
