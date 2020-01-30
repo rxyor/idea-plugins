@@ -14,10 +14,10 @@ import lombok.Data;
 @Data
 public class XmlDependency {
 
-    private TagTextPair groupId;
+    private String groupId;
 
-    private TagTextPair artifactId;
+    private String artifactId;
 
-    private TagTextPair version;
+    private String version;
 
 }

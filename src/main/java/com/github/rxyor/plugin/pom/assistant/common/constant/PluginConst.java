@@ -31,6 +31,9 @@ public interface PluginConst {
         String GROUP_ID = "groupId";
         String ARTIFACT_ID = "artifactId";
         String VERSION = "version";
+
+        String PROPERTIES = "properties";
+        String PROPERTY = "property";
     }
 
     interface XmlTag {

@@ -7,19 +7,21 @@ import com.github.rxyor.plugin.pom.assistant.common.model.TagTextPair;
 import com.github.rxyor.plugin.pom.assistant.common.model.XmlDependency;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import com.intellij.lang.ASTNode;
 import com.intellij.lang.xml.XMLLanguage;
+import com.intellij.lang.xml.XmlASTFactory;
 import com.intellij.openapi.fileTypes.StdFileTypes;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.xml.XmlElementType;
 import com.intellij.psi.xml.XmlFile;
 import com.intellij.psi.xml.XmlTag;
 import com.intellij.psi.xml.XmlText;
 import com.intellij.psi.xml.XmlToken;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang.StringUtils;
 import org.jetbrains.idea.maven.project.MavenProject;
 import org.jetbrains.idea.maven.project.MavenProjectsManager;
 
@@ -66,17 +68,6 @@ public class MavenUtil {
             throw new IllegalArgumentException("file is not valid pom.xml");
         }
 
-        findTargetElement(element);
-        if (element instanceof XmlToken) {
-            PsiFile psiFile = element.getContainingFile();
-            XmlFile xmlFile = getXmlFile(psiFile);
-            XmlTag rootTag = xmlFile.getDocument().getRootTag();
-            XmlTag[] xmlTags = rootTag.getSubTags();
-            Project project = psiFile.getProject();
-            ASTNode node = element.getNode();
-            System.out.println(node);
-        }
-        XmlFile xmlFile;
         return findTargetElement(element);
     }
 
@@ -94,8 +85,27 @@ public class MavenUtil {
         }
     }
 
-    public static void addPropertiesSubTag(XmlFile xmlFile){
-        Preconditions.checkNotNull(xmlFile, "xmlFile can't be bu null");
+    public static void addPropertiesSubTag(XmlFile xmlFile, TagTextPair tagTextPair) {
+        Preconditions.checkNotNull(xmlFile, "xmlFile can't be not null");
+        Preconditions.checkNotNull(tagTextPair, "tagTextPair can't be not null");
+
+        XmlTag rootTag = xmlFile.getRootTag();
+        XmlTag propertiesTag = rootTag.findFirstSubTag(PomTag.PROPERTIES);
+        if (propertiesTag == null) {
+            propertiesTag = rootTag.createChildTag(PomTag.PROPERTIES, rootTag.getNamespace(),
+                "", false);
+        }
+        XmlTag propertyTag = propertiesTag.createChildTag(tagTextPair.getTag(), propertiesTag.getNamespace(),
+            tagTextPair.getValue(), false);
+    }
+
+    public static XmlTag createXmlTag(String tag, String text) {
+        Preconditions.checkArgument(StringUtils.isNotBlank(tag), "tag can't be blank");
+        Preconditions.checkArgument(StringUtils.isNotBlank(text), "text can't be blank");
+
+        XmlTag xmlTag = (XmlTag) XmlASTFactory.composite(XmlElementType.XML_TAG);
+        xmlTag.setAttribute(tag, text);
+        return xmlTag;
     }
 
     private static XmlDependency findTargetElement(PsiElement element) {
@@ -116,11 +126,11 @@ public class MavenUtil {
         final XmlDependency xmlDependency = new XmlDependency();
         tagTextPairList.forEach(o -> {
             if (PomTag.GROUP_ID.equalsIgnoreCase(o.getTag())) {
-                xmlDependency.setGroupId(new TagTextPair(o.getTag(), o.getValue()));
+                xmlDependency.setGroupId(o.getValue());
             } else if (PomTag.ARTIFACT_ID.equalsIgnoreCase(o.getTag())) {
-                xmlDependency.setArtifactId(new TagTextPair(o.getTag(), o.getValue()));
+                xmlDependency.setArtifactId(o.getValue());
             } else if (PomTag.VERSION.equalsIgnoreCase(o.getTag())) {
-                xmlDependency.setVersion(new TagTextPair(o.getTag(), o.getValue()));
+                xmlDependency.setVersion(o.getValue());
             }
         });
 
@@ -136,9 +146,9 @@ public class MavenUtil {
             if (p instanceof XmlText) {
                 XmlText parent = (XmlText) p;
                 XmlToken nextSibling = (XmlToken) parent.getNextSibling();
-                 parentTag = (XmlTag) nextSibling.getParent();
+                parentTag = (XmlTag) nextSibling.getParent();
 
-            }else if(p instanceof XmlTag){
+            } else if (p instanceof XmlTag) {
                 parentTag = (XmlTag) p;
             }
 
