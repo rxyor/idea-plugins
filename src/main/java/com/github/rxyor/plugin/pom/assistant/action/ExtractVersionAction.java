@@ -45,8 +45,7 @@ public class ExtractVersionAction extends DumbAwareAction {
         }
 
         XmlDependency xmlDependency = MavenUtil.parseXmlDependency(element);
-        PsiElement parentElement = element.getParent();
-        System.out.println(element);
+        NotificationUtil.info("INFO", xmlDependency.toString());
     }
 
 

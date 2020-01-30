@@ -24,4 +24,11 @@ public class TagTextPair {
      */
     private String value;
 
+    public TagTextPair() {
+    }
+
+    public TagTextPair(String tag, String value) {
+        this.tag = tag;
+        this.value = value;
+    }
 }

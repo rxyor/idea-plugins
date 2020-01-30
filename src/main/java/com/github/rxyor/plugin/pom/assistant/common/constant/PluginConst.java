@@ -23,4 +23,18 @@ public interface PluginConst {
             String POM = "pom.xml";
         }
     }
+
+    interface PomTag {
+
+        String DEPENDENCIES = "dependencies";
+        String DEPENDENCY = "dependency";
+        String GROUP_ID = "groupId";
+        String ARTIFACT_ID = "artifactId";
+        String VERSION = "version";
+    }
+
+    interface XmlTag {
+
+        String PREFIX = "XmlTag:";
+    }
 }
