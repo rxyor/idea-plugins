@@ -16,6 +16,12 @@ public interface PluginConst {
         String GROUP_ID = "PomAssistant";
     }
 
+    interface Biz {
+
+        String DEPENDENCY = "Dependency";
+        String MANAGEMENT_DEPENDENCY = "ManagementDependency";
+    }
+
     interface File {
 
         interface SpecificFile {

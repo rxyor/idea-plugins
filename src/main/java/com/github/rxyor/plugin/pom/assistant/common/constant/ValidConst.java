@@ -13,9 +13,12 @@ public interface ValidConst {
 
     interface NoNull {
 
+        String Project = "Project";
         String AnActionEvent = "AnActionEvent can't be null";
         String DataContext = "DataContext can't be null";
         String PsiFile = "PsiFile can't be null";
         String PsiElement = "PsiElement can't be null";
+
+        String MavenDomProjectModel = "MavenDomProjectModel";
     }
 }

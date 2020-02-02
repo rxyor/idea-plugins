@@ -7,6 +7,8 @@ import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.codeStyle.CodeStyleManager;
+import org.jetbrains.annotations.NotNull;
 
 /**
  *<p>
@@ -68,5 +70,28 @@ public class PsiFileUtil {
         return e.getData(CommonDataKeys.EDITOR);
     }
 
+    /**
+     *refresh butter/temp/cache
+     *
+     * @author liuyang
+     * @date 2020-02-03 周一 02:12:05
+     * @param psiFile
+     * @return
+     */
+    public static void refresh(@NotNull PsiFile psiFile) {
+        psiFile.getVirtualFile().refresh(true, false);
+    }
+
+    /**
+     *reformat file
+     *
+     * @author liuyang
+     * @date 2020-02-03 周一 02:13:37
+     * @param psiFile
+     * @return
+     */
+    public static void reformat(@NotNull PsiFile psiFile) {
+        CodeStyleManager.getInstance(psiFile.getProject()).reformat(psiFile);
+    }
 
 }

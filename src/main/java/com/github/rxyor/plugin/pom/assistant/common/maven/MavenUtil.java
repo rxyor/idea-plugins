@@ -43,6 +43,15 @@ public class MavenUtil {
         return MavenDependencyUtil.getDomDependency(projectModel, editor);
     }
 
+    public static MavenDomDependency parseMavenDomManagementDependency(AnActionEvent e) {
+        Preconditions.checkNotNull(e, NoNull.AnActionEvent);
+
+        final PsiFile psiFile = PsiFileUtil.getPsiFile(e);
+        final Editor editor = PsiFileUtil.getEditor(e);
+        MavenDomProjectModel projectModel = MavenProjectUtil.getMavenDomProjectModel(psiFile);
+        return MavenDependencyUtil.getDomManagementDependency(projectModel, editor);
+    }
+
     public static MavenId parseMavenId(AnActionEvent e) {
         Preconditions.checkNotNull(e, NoNull.AnActionEvent);
 

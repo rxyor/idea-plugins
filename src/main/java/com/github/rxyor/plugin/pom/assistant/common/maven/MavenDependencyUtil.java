@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.idea.maven.dom.model.MavenDomDependencies;
 import org.jetbrains.idea.maven.dom.model.MavenDomDependency;
+import org.jetbrains.idea.maven.dom.model.MavenDomDependencyManagement;
 import org.jetbrains.idea.maven.dom.model.MavenDomProjectModel;
 
 /**
@@ -23,10 +24,18 @@ public class MavenDependencyUtil {
     private MavenDependencyUtil() {
     }
 
-    @NotNull
     public static MavenDomDependency getDomDependency(MavenDomProjectModel model,
         @Nullable Editor editor) {
         return getDomDependency(model.getDependencies(), editor);
+    }
+
+    public static MavenDomDependency getDomManagementDependency(MavenDomProjectModel model,
+        @Nullable Editor editor) {
+        MavenDomDependencyManagement management = model.getDependencyManagement();
+        if (management != null) {
+            return getDomDependency(management.getDependencies(), editor);
+        }
+        return null;
     }
 
     public static MavenDomDependency getDomDependency(@NotNull final MavenDomDependencies dependencies,
