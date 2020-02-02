@@ -7,10 +7,12 @@ import com.github.rxyor.plugin.pom.assistant.common.util.NotificationUtil;
 import com.google.common.base.Preconditions;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
+import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.DumbAwareAction;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.psi.xml.XmlFile;
 import org.jetbrains.annotations.NotNull;
 
@@ -45,9 +47,13 @@ public class ExtractVersionAction extends DumbAwareAction {
         XmlFile xmlFile = MavenUtil.getXmlFile(psiFile);
 
         String tag = xmlDependency.getArtifactId() + ".version";
-        MavenUtil.addPropertiesSubTag(xmlFile, new TagTextPair(tag, xmlDependency.getVersion()));
+        CommandProcessor.getInstance().executeCommand(e.getProject(),
+            (Runnable) () -> {
+                MavenUtil.addPropertiesSubTag(xmlFile, new TagTextPair(tag, xmlDependency.getVersion()));
+                CodeStyleManager.getInstance(e.getProject()).reformat(xmlFile);
+                xmlFile.getVirtualFile().refresh(true, true);
+            }
+            , "Pom", "pom");
         NotificationUtil.info("INFO", xmlDependency.toString());
     }
-
-
 }

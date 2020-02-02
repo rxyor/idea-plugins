@@ -94,9 +94,16 @@ public class MavenUtil {
         if (propertiesTag == null) {
             propertiesTag = rootTag.createChildTag(PomTag.PROPERTIES, rootTag.getNamespace(),
                 "", false);
+            rootTag.addSubTag(propertiesTag, false);
         }
-        XmlTag propertyTag = propertiesTag.createChildTag(tagTextPair.getTag(), propertiesTag.getNamespace(),
-            tagTextPair.getValue(), false);
+        XmlTag oldPropertyTag = propertiesTag.findFirstSubTag(tagTextPair.getTag());
+        if (oldPropertyTag != null) {
+            oldPropertyTag.delete();
+        }
+        XmlTag newPropertyTag = propertiesTag.createChildTag(tagTextPair.getTag(),
+            propertiesTag.getNamespace(), tagTextPair.getValue(), false);
+        propertiesTag.addSubTag(newPropertyTag, false);
+
     }
 
     public static XmlTag createXmlTag(String tag, String text) {
