@@ -8,20 +8,20 @@ import com.github.rxyor.plugin.pom.assistant.common.model.XmlDependency;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.intellij.lang.xml.XMLLanguage;
-import com.intellij.lang.xml.XmlASTFactory;
 import com.intellij.openapi.fileTypes.StdFileTypes;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.xml.XmlElementType;
 import com.intellij.psi.xml.XmlFile;
 import com.intellij.psi.xml.XmlTag;
 import com.intellij.psi.xml.XmlText;
 import com.intellij.psi.xml.XmlToken;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import org.apache.commons.lang.StringUtils;
+import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.idea.maven.project.MavenProject;
 import org.jetbrains.idea.maven.project.MavenProjectsManager;
 
@@ -89,31 +89,23 @@ public class MavenUtil {
         Preconditions.checkNotNull(xmlFile, "xmlFile can't be not null");
         Preconditions.checkNotNull(tagTextPair, "tagTextPair can't be not null");
 
-        XmlTag rootTag = xmlFile.getRootTag();
-        XmlTag propertiesTag = rootTag.findFirstSubTag(PomTag.PROPERTIES);
-        if (propertiesTag == null) {
-            propertiesTag = rootTag.createChildTag(PomTag.PROPERTIES, rootTag.getNamespace(),
+        XmlTag root = xmlFile.getRootTag();
+        XmlTag properties = root.findFirstSubTag(PomTag.PROPERTIES);
+        if (properties == null) {
+            properties = root.createChildTag(PomTag.PROPERTIES, root.getNamespace(),
                 "", false);
-            rootTag.addSubTag(propertiesTag, false);
+            root.addSubTag(properties, false);
         }
-        XmlTag oldPropertyTag = propertiesTag.findFirstSubTag(tagTextPair.getTag());
-        if (oldPropertyTag != null) {
-            oldPropertyTag.delete();
+        XmlTag oldProperty = properties.findFirstSubTag(tagTextPair.getTag());
+        if (oldProperty != null) {
+            oldProperty.delete();
         }
-        XmlTag newPropertyTag = propertiesTag.createChildTag(tagTextPair.getTag(),
-            propertiesTag.getNamespace(), tagTextPair.getValue(), false);
-        propertiesTag.addSubTag(newPropertyTag, false);
 
+        XmlTag newProperty = properties.createChildTag(tagTextPair.getTag(),
+            properties.getNamespace(), tagTextPair.getValue(), false);
+        properties.addSubTag(newProperty, false);
     }
 
-    public static XmlTag createXmlTag(String tag, String text) {
-        Preconditions.checkArgument(StringUtils.isNotBlank(tag), "tag can't be blank");
-        Preconditions.checkArgument(StringUtils.isNotBlank(text), "text can't be blank");
-
-        XmlTag xmlTag = (XmlTag) XmlASTFactory.composite(XmlElementType.XML_TAG);
-        xmlTag.setAttribute(tag, text);
-        return xmlTag;
-    }
 
     private static XmlDependency findTargetElement(PsiElement element) {
 
@@ -167,6 +159,75 @@ public class MavenUtil {
             return parentTag;
         }
         return null;
+    }
+
+    public static void updateDependencyTag(XmlFile xmlFile, XmlDependency xmlDependency) {
+        Preconditions.checkNotNull(xmlFile, "xmlFile can't be null");
+
+        Preconditions.checkNotNull(xmlDependency, "xmlDependency can't be null");
+        Preconditions.checkArgument(StringUtils.isNotBlank(xmlDependency.getGroupId()),
+            "dependency groupId can't be null");
+        Preconditions.checkArgument(StringUtils.isNotBlank(xmlDependency.getArtifactId()),
+            "dependency artifactId can't be null");
+        Preconditions.checkArgument(StringUtils.isNotBlank(xmlDependency.getVersion()),
+            "dependency version can't be null");
+
+        Map<String, XmlTag> findTag = new HashMap<>(2);
+        XmlTag root = xmlFile.getRootTag();
+
+        XmlTag dependencyManagement = root.findFirstSubTag(PomTag.DEPENDENCY_MANAGEMENT);
+        if (dependencyManagement != null) {
+            XmlTag dependencies = dependencyManagement.findFirstSubTag(PomTag.DEPENDENCIES);
+            List<XmlTag> dependencyList = Lists.newArrayList(dependencies.findSubTags(PomTag.DEPENDENCY));
+            dependencyList.forEach(tag -> {
+                boolean equal = equalsByGroupIdAndArtifactId(tag, xmlDependency);
+                if (equal) {
+                    XmlTag version = tag.findFirstSubTag(PomTag.VERSION);
+                    String versionPlaceholder = "${" + xmlDependency.getArtifactId() + ".version}";
+                    if (version != null && !version.getValue().getText().contains("$")) {
+                        version.getValue().setText(versionPlaceholder);
+                    }
+                    findTag.put("dependencyManagement", tag);
+                }
+            });
+        }
+
+        XmlTag dependencies = root.findFirstSubTag(PomTag.DEPENDENCIES);
+        List<XmlTag> dependencyList = Lists.newArrayList(dependencies.findSubTags(PomTag.DEPENDENCY));
+        dependencyList.forEach(tag -> {
+            boolean equal = equalsByGroupIdAndArtifactId(tag, xmlDependency);
+            if (equal) {
+                XmlTag version = tag.findFirstSubTag(PomTag.VERSION);
+                String versionPlaceholder = "${" + xmlDependency.getArtifactId() + ".version}";
+                if (version != null && findTag.size() == 0&&!version.getValue().getText().contains("$")) {
+                    version.getValue().setText(versionPlaceholder);
+                } else if (version != null && findTag.size() > 0) {
+                    version.delete();
+                }
+            }
+        });
+
+    }
+
+    private static boolean equalsByGroupIdAndArtifactId(XmlTag dependencyTag, XmlDependency xmlDependency) {
+        Preconditions.checkNotNull(dependencyTag, "dependencyTag can't be null");
+        Preconditions.checkNotNull(xmlDependency, "xmlDependency can't be null");
+
+        String groupId = xmlDependency.getGroupId();
+        String artifactId = xmlDependency.getArtifactId();
+        if (StringUtils.isBlank(groupId) || StringUtils.isBlank(artifactId)) {
+            return false;
+        }
+
+        XmlTag groupIdTag = dependencyTag.findFirstSubTag(PomTag.GROUP_ID);
+        XmlTag artifactIdTag = dependencyTag.findFirstSubTag(PomTag.ARTIFACT_ID);
+        if (groupIdTag == null || artifactIdTag == null) {
+            return false;
+        }
+
+        boolean equalGroupId = groupId.trim().equals(groupIdTag.getValue().getText());
+        boolean equalArtifactId = artifactId.trim().equals(artifactIdTag.getValue().getText());
+        return equalGroupId && equalArtifactId;
     }
 
 }

@@ -26,6 +26,7 @@ public interface PluginConst {
 
     interface PomTag {
 
+        String DEPENDENCY_MANAGEMENT = "dependencyManagement";
         String DEPENDENCIES = "dependencies";
         String DEPENDENCY = "dependency";
         String GROUP_ID = "groupId";
