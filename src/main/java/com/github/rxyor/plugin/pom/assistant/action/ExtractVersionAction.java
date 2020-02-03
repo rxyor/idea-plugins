@@ -9,12 +9,15 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.psi.PsiFile;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.idea.maven.dom.model.MavenDomDependencies;
 import org.jetbrains.idea.maven.dom.model.MavenDomDependency;
 import org.jetbrains.idea.maven.dom.model.MavenDomDependencyManagement;
 import org.jetbrains.idea.maven.dom.model.MavenDomProjectModel;
+import org.jetbrains.idea.maven.model.MavenId;
 
 /**
  *<p>
@@ -26,6 +29,7 @@ import org.jetbrains.idea.maven.dom.model.MavenDomProjectModel;
  * @since 1.0.0
  */
 public class ExtractVersionAction extends AnAction {
+
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
@@ -65,22 +69,40 @@ public class ExtractVersionAction extends AnAction {
 
     public DependencyPair getMavenDomDependencyPair(@NotNull AnActionEvent e) {
         final PsiFile psiFile = PsiFileUtil.getPsiFile(e);
+        MavenId mavenId = MavenUtil.parseMavenId(e);
+        DependencyPair pair = new DependencyPair();
 
         MavenDomProjectModel model = MavenProjectUtil.getMavenDomProjectModel(psiFile);
-        MavenDomDependencies managementDependencies = Optional
+        List<MavenDomDependency> managementDependencyList = Optional
             .ofNullable(model.getDependencyManagement())
             .map(MavenDomDependencyManagement::getDependencies)
-            .orElse(null);
+            .map(MavenDomDependencies::getDependencies)
+            .orElse(new ArrayList<>(0));
+        for (MavenDomDependency dependency : managementDependencyList) {
+            if (MavenUtil.isSame(dependency, mavenId)) {
+                pair.managementDependency = dependency;
+                break;
+            }
+        }
 
-        DependencyPair pair = new DependencyPair();
-        pair.dependency = MavenUtil.parseMavenDomDependency(e);
+        List<MavenDomDependency> dependencyList = Optional
+            .ofNullable(model.getDependencies())
+            .map(MavenDomDependencies::getDependencies)
+            .orElse(new ArrayList<>(0));
+        for (MavenDomDependency dependency : dependencyList) {
+            if (MavenUtil.isSame(dependency, mavenId)) {
+                pair.dependency = dependency;
+                break;
+            }
+        }
+
         return pair;
     }
 
     private void removeDependency(DependencyPair pair) {
         if (pair.managementDependency != null && pair.dependency != null) {
             MavenDomDependency dependency = pair.dependency;
-            String text = dependency.getVersion().getRawText();
+            dependency.getVersion().setStringValue(null);
         }
     }
 
@@ -89,4 +111,5 @@ public class ExtractVersionAction extends AnAction {
         private MavenDomDependency dependency;
         private MavenDomDependency managementDependency;
     }
+
 }

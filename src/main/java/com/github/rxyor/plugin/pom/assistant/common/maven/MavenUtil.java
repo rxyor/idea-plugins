@@ -16,6 +16,7 @@ import com.intellij.psi.xml.XmlToken;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.idea.maven.dom.model.MavenDomDependency;
 import org.jetbrains.idea.maven.dom.model.MavenDomProjectModel;
 import org.jetbrains.idea.maven.model.MavenId;
@@ -84,6 +85,27 @@ public class MavenUtil {
                 map.get(PomTag.ARTIFACT_ID), map.get(PomTag.VERSION));
         }
         return null;
+    }
+
+    /**
+     * 是否是同一个版本号
+     *
+     * @param dependency
+     * @param mavenId
+     * @return
+     */
+    public static boolean isSame(MavenDomDependency dependency, MavenId mavenId) {
+        if (dependency == null || mavenId == null) {
+            return false;
+        }
+
+        boolean isSameGroupId = StringUtils.equals(
+            dependency.getGroupId().getValue(), mavenId.getGroupId());
+        boolean isSameArtifactId = StringUtils.equals(
+            dependency.getArtifactId().getValue(), mavenId.getArtifactId());
+        boolean isSameVersion = StringUtils.equals(
+            dependency.getVersion().getValue(), mavenId.getVersion());
+        return isSameGroupId && isSameArtifactId && isSameVersion;
     }
 
     private static XmlTag findDependencyTag(PsiElement element) {
