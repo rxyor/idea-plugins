@@ -40,7 +40,7 @@ public class MavenUtil {
         final PsiFile psiFile = PsiFileUtil.getPsiFile(e);
         final Editor editor = PsiFileUtil.getEditor(e);
         MavenDomProjectModel projectModel = MavenProjectUtil.getMavenDomProjectModel(psiFile);
-        return MavenDependencyUtil.getDomDependency(projectModel, editor);
+        return MavenDependencyUtil.getMavenDomDependency(projectModel, editor);
     }
 
     public static MavenDomDependency parseMavenDomManagementDependency(AnActionEvent e) {

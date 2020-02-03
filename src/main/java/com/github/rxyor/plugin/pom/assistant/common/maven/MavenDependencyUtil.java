@@ -24,21 +24,66 @@ public class MavenDependencyUtil {
     private MavenDependencyUtil() {
     }
 
-    public static MavenDomDependency getDomDependency(MavenDomProjectModel model,
+    /**
+     * get dependency from <dependencies> or <dependencyManagement>
+     *
+     * @author liuyang
+     * @date 2020-02-03 周一 14:44:39
+     * @param model
+     * @param editor
+     * @return
+     */
+    public static MavenDomDependency getDependency(MavenDomProjectModel model,
         @Nullable Editor editor) {
-        return getDomDependency(model.getDependencies(), editor);
-    }
-
-    public static MavenDomDependency getDomManagementDependency(MavenDomProjectModel model,
-        @Nullable Editor editor) {
-        MavenDomDependencyManagement management = model.getDependencyManagement();
-        if (management != null) {
-            return getDomDependency(management.getDependencies(), editor);
+        MavenDomDependency dependency = getMavenDomDependency(model, editor);
+        if (dependency == null) {
+            return getDomManagementDependency(model, editor);
         }
         return null;
     }
 
-    public static MavenDomDependency getDomDependency(@NotNull final MavenDomDependencies dependencies,
+    /**
+     *get dependency from <dependencies>
+     *
+     * @author liuyang
+     * @date 2020-02-03 周一 14:46:19
+     * @param model
+     * @param editor
+     * @return
+     */
+    public static MavenDomDependency getMavenDomDependency(MavenDomProjectModel model,
+        @Nullable Editor editor) {
+        return getMavenDomDependency(model.getDependencies(), editor);
+    }
+
+    /**
+     *get dependency from <dependencyManagement>
+     *
+     * @author liuyang
+     * @date 2020-02-03 周一 14:46:49
+     * @param model
+     * @param editor
+     * @return
+     */
+    public static MavenDomDependency getDomManagementDependency(MavenDomProjectModel model,
+        @Nullable Editor editor) {
+        MavenDomDependencyManagement management = model.getDependencyManagement();
+        if (management != null) {
+            return getMavenDomDependency(management.getDependencies(), editor);
+        }
+        return null;
+    }
+
+    /**
+     *get dependency from MavenDomDependencies
+     *
+     * @author liuyang
+     * @date 2020-02-03 周一 14:47:58
+     * @param dependencies
+     * @param editor
+     * @return
+     */
+    public static MavenDomDependency getMavenDomDependency(@NotNull final MavenDomDependencies dependencies,
         @Nullable final Editor editor) {
         if (editor != null) {
             int offset = editor.getCaretModel().getOffset();
