@@ -5,6 +5,7 @@ import com.google.common.base.Preconditions;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.codeStyle.CodeStyleManager;
@@ -22,6 +23,18 @@ import org.jetbrains.annotations.NotNull;
 public class PsiFileUtil {
 
     private PsiFileUtil() {
+    }
+
+    /**
+     *get PsiFile from AnActionEvent
+     *
+     * @author liuyang
+     * @date 2020-02-03 周一 00:17:41
+     * @param e
+     * @return
+     */
+    public static VirtualFile getVirtualFile(@NotNull AnActionEvent e) {
+        return e.getData(CommonDataKeys.VIRTUAL_FILE);
     }
 
     /**

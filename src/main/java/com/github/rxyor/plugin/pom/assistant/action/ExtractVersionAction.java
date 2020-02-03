@@ -9,8 +9,10 @@ import com.github.rxyor.plugin.pom.assistant.common.notification.util.Notificati
 import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiFileUtil;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import org.apache.commons.lang3.StringUtils;
@@ -30,6 +32,18 @@ import org.jetbrains.idea.maven.utils.actions.MavenActionUtil;
  * @since 1.0.0
  */
 public class ExtractVersionAction extends AnAction {
+
+    @Override
+    public void update(@NotNull AnActionEvent e) {
+        final Presentation presentation = e.getPresentation();
+        VirtualFile virtualFile = PsiFileUtil.getVirtualFile(e);
+        boolean isMavenProjectFile = MavenActionUtil.isMavenProjectFile(virtualFile);
+        if (isMavenProjectFile) {
+            presentation.setEnabledAndVisible(true);
+        } else {
+            presentation.setVisible(false);
+        }
+    }
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
