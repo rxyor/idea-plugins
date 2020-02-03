@@ -2,12 +2,32 @@
     <id>com.github.rxyor.plugin.pom.assistant</id>
     <name>Pom Assistant</name>
     <version>1.0</version>
-    <vendor email="rxyoryor@gmail.com" url="https://github.com/WangJi92/arthas-idea-plugin">HDU</vendor>
+    <vendor email="rxyor@outlook.com" url="https://github.com/rxyor/idea-plugins">Chi Yo</vendor>
 
     <description><![CDATA[
+    <tag>Pom Assistant, Simplify The Operation Of pom.xml<tag>
+    <h4>Pom Assistant is tool to help you operate pom.xml simply</h4>
+    <h3>English:</h3>
+    <ul>
+    <li>A plugin based on IntelliJ IDEA which can help you operate pom.xml simply, eg: </li>
+    <li>Extract dependency version from dependency tag into properties tag </li>
+    </ul>
+
+    <h3>中文：</h3>
+    <ul>
+    <li>基于IntelliJ IDEA的一款插件，能帮助你简化做一些pom文件操作, 比如: </li>
+    <li>提取依赖的版本号到属性标签里</li>
+    </ul>
     ]]></description>
 
     <change-notes><![CDATA[
+     <p>1.0</p>
+     <ul>
+        <li>1.Extract dependency version from dependency tag into properties tag</li>
+     </ul>
+     <ul>
+        <li>1.提取依赖的版本号到属性标签里</li>
+     </ul>
     ]]>
     </change-notes>
 
@@ -21,7 +41,6 @@
     -->
     <depends>org.jetbrains.idea.maven</depends>
 
-
     <extensions defaultExtensionNs="com.intellij">
     </extensions>
 
@@ -32,23 +51,16 @@
     </project-components>
 
     <actions>
-        <action id="PomFileInfoAction"
-            class="com.github.rxyor.plugin.pom.assistant.action.PomFileInfoAction"
-            text="sort" description="show pom info">
-            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
-        </action>
-
         <action id="ExtractVersionAction"
             class="com.github.rxyor.plugin.pom.assistant.action.ExtractVersionAction"
-            text="extract version" description="extract version and replace placeholder">
+            text="Extract Version" description="extract version and replace placeholder">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
         </action>
 
-        <group id="PomAssistant" popup="true" text="Pom Assistant">
+        <group id="PomAssistant" popup="true" text="Pom Assistant" icon="PomAssistantPluginIcons.mavenLogo">
             <add-to-group group-id="EditorPopupMenu" anchor="after"
                 relative-to-action="CopyReference"/>
             <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <reference ref="PomFileInfoAction"/>
             <reference ref="ExtractVersionAction"/>
         </group>
     </actions>
