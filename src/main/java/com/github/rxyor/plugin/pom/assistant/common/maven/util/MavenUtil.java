@@ -1,9 +1,9 @@
-package com.github.rxyor.plugin.pom.assistant.common.maven;
+package com.github.rxyor.plugin.pom.assistant.common.maven.util;
 
 import com.github.rxyor.plugin.pom.assistant.common.constant.PluginConst;
 import com.github.rxyor.plugin.pom.assistant.common.constant.PluginConst.PomTag;
 import com.github.rxyor.plugin.pom.assistant.common.constant.ValidConst.NoNull;
-import com.github.rxyor.plugin.pom.assistant.common.util.PsiFileUtil;
+import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiFileUtil;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -41,7 +41,7 @@ public class MavenUtil {
         final PsiFile psiFile = PsiFileUtil.getPsiFile(e);
         final Editor editor = PsiFileUtil.getEditor(e);
         MavenDomProjectModel projectModel = MavenProjectUtil.getMavenDomProjectModel(psiFile);
-        return MavenDependencyUtil.getMavenDomDependency(projectModel, editor);
+        return MavenDependencyUtil.getClickMavenDomDependency(projectModel, editor);
     }
 
     public static MavenDomDependency parseMavenDomManagementDependency(AnActionEvent e) {
@@ -50,7 +50,7 @@ public class MavenUtil {
         final PsiFile psiFile = PsiFileUtil.getPsiFile(e);
         final Editor editor = PsiFileUtil.getEditor(e);
         MavenDomProjectModel projectModel = MavenProjectUtil.getMavenDomProjectModel(psiFile);
-        return MavenDependencyUtil.getDomManagementDependency(projectModel, editor);
+        return MavenDependencyUtil.getClickDomManagementDependency(projectModel, editor);
     }
 
     public static MavenId parseMavenId(AnActionEvent e) {

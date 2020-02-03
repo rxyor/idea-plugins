@@ -1,4 +1,4 @@
-package com.github.rxyor.plugin.pom.assistant.common.util;
+package com.github.rxyor.plugin.pom.assistant.common.psi.util;
 
 import com.github.rxyor.plugin.pom.assistant.common.constant.ValidConst.NoNull;
 import com.google.common.base.Preconditions;

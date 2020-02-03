@@ -1,4 +1,4 @@
-package com.github.rxyor.plugin.pom.assistant.common.util;
+package com.github.rxyor.plugin.pom.assistant.common.notification.util;
 
 
 import com.github.rxyor.plugin.pom.assistant.common.constant.PluginConst.App;

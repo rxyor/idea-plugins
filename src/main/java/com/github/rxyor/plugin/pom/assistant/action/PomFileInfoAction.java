@@ -1,7 +1,7 @@
 package com.github.rxyor.plugin.pom.assistant.action;
 
 import com.github.rxyor.plugin.pom.assistant.common.constant.PluginConst.File.SpecificFile;
-import com.github.rxyor.plugin.pom.assistant.common.util.NotificationUtil;
+import com.github.rxyor.plugin.pom.assistant.common.notification.util.NotificationUtil;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.xml.XMLLanguage;
 import com.intellij.openapi.actionSystem.AnAction;
