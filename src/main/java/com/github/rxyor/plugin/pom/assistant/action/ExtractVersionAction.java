@@ -83,7 +83,7 @@ public class ExtractVersionAction extends AnAction {
         //属性标签中添加对应的属性
         MavenPropertyUtil.addOrUpdateMavenProperty(model, property, mavenId.getVersion());
         //点击依赖版本号替换为占位符
-        clickDependency.getVersion().setValue(placeholder);
+        resetVersion(clickDependency,placeholder);
 
         DependencyPair dependencyPair = MavenDependencyUtil
             .findDependency(model, mavenId);
@@ -134,6 +134,18 @@ public class ExtractVersionAction extends AnAction {
     private void removeDependency(DependencyPair pair) {
         if (pair.getManagementDependency() != null && pair.getDependency() != null) {
             MavenDependencyUtil.removeVersion(pair.getDependency());
+        }
+    }
+
+    /**
+     * 设置版本号
+     *
+     * @param dependency
+     * @param version
+     */
+    private void resetVersion(MavenDomDependency dependency, String version) {
+        if (dependency != null) {
+            dependency.getVersion().setValue(version);
         }
     }
 }

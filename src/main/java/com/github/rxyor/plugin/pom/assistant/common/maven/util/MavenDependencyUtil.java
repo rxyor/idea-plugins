@@ -53,7 +53,7 @@ public class MavenDependencyUtil {
         if (dependency == null) {
             return getClickDomManagementDependency(model, editor);
         }
-        return null;
+        return dependency;
     }
 
     /**
