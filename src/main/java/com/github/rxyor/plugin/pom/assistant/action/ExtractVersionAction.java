@@ -78,15 +78,16 @@ public class ExtractVersionAction extends AnAction {
 
         String property = mavenId.getArtifactId() + ".version";
         String placeholder = "${" + property + "}";
-        MavenDomDependency clickDependency = MavenDependencyUtil
-            .getClickDependency(model, editor);
         //属性标签中添加对应的属性
         MavenPropertyUtil.addOrUpdateMavenProperty(model, property, mavenId.getVersion());
-        //点击依赖版本号替换为占位符
-        resetVersion(clickDependency,placeholder);
 
         DependencyPair dependencyPair = MavenDependencyUtil
             .findDependency(model, mavenId);
+
+        //点击依赖版本号替换为占位符
+        resetVersion(dependencyPair.getDependency(),placeholder);
+        resetVersion(dependencyPair.getManagementDependency(),placeholder);
+
         removeDependency(dependencyPair);
 
         //格式化并刷新文件
