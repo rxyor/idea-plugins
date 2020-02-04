@@ -21,10 +21,16 @@ public class SortAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         final PsiFile psiFile = PsiFileUtil.getPsiFile(e);
+        Document document = this.getDocument(psiFile);
+        String text = document.getText();
 
     }
 
     private Document getDocument(@NotNull PsiFile psiFile) {
         return psiFile.getViewProvider().getDocument();
+    }
+
+    protected String format(String text) {
+        return null;
     }
 }
