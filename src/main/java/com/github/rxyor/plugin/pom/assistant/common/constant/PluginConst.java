@@ -16,11 +16,35 @@ public interface PluginConst {
         String GROUP_ID = "PomAssistant";
     }
 
+    interface Biz {
+
+        String DEPENDENCY = "Dependency";
+        String MANAGEMENT_DEPENDENCY = "ManagementDependency";
+    }
+
     interface File {
 
         interface SpecificFile {
 
             String POM = "pom.xml";
         }
+    }
+
+    interface PomTag {
+
+        String DEPENDENCY_MANAGEMENT = "dependencyManagement";
+        String DEPENDENCIES = "dependencies";
+        String DEPENDENCY = "dependency";
+        String GROUP_ID = "groupId";
+        String ARTIFACT_ID = "artifactId";
+        String VERSION = "version";
+
+        String PROPERTIES = "properties";
+        String PROPERTY = "property";
+    }
+
+    interface XmlTag {
+
+        String PREFIX = "XmlTag:";
     }
 }

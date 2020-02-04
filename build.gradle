@@ -1,34 +1,25 @@
 plugins {
-    id 'java'
-    id 'org.jetbrains.intellij' version '0.4.15'
+    id "org.jetbrains.intellij" version "0.4.15"
 }
 
-apply plugin: "org.jetbrains.intellij"
+apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'java'
-apply plugin: 'idea'
 
-group 'com.github.rxyor'
-version '1.0-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
-sourceCompatibility = 1.8
+intellij {
+    version '2019.3.1'
+    type 'IU'
+    pluginName 'Pom Assistant'
+    plugins = ['maven']
+}
+
+group 'com.github.rxyor.plugin.pom.assistant'
+version '1.1'
 
 repositories {
     mavenCentral()
-    maven {
-        url "https://oss.sonatype.org/content/repositories/snapshots/"
-    }
-    maven {
-        url 'https://dl.bintray.com/jetbrains/intellij-plugin-service'
-    }
-}
-
-intellij {
-    version '193.5662.53'
-    type 'IU'
-//    version '2019.3.1'
-//    plugins = ['maven']
-//    plugins = ['org.jetbrains.idea.maven']
-//    localPath '/Applications/IntelliJ IDEA.app'
 }
 
 dependencies {
@@ -38,6 +29,5 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.2'
 
     compile group: 'com.google.guava', name: 'guava', version: '23.0'
-    compile fileTree(dir: 'lib', includes: ['*.jar'])
-//    compile files('/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib')
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
 }
