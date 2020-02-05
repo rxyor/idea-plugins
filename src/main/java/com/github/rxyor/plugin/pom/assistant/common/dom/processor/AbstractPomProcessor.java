@@ -52,6 +52,7 @@ public abstract class AbstractPomProcessor {
         try {
             OutputFormat format = new OutputFormat();
             format.setIndent(true);
+            format.setNewlines(true);
             format.setNewLineAfterDeclaration(false);
             StringWriter writer = new StringWriter();
             XMLWriter xmlWriter = new XMLWriter(writer, format);
