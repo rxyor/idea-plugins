@@ -27,6 +27,7 @@ public abstract class AbstractPomProcessor {
     public AbstractPomProcessor(String text) {
         try {
             this.document = DocumentHelper.parseText(text);
+            processors.add(this);
         } catch (DocumentException e) {
             throw new IllegalArgumentException(String.format(
                 "Select file is invalid, errors[%s]", e.getMessage()));
@@ -35,23 +36,22 @@ public abstract class AbstractPomProcessor {
 
     public AbstractPomProcessor(@NotNull AbstractPomProcessor processor) {
         this.document = processor.document;
-        this.processors.add(processor);
+        processors.add(this);
     }
 
-    public abstract void process();
+    protected abstract void doProcess();
 
-    public void sequenceProcess() {
+    public void process() {
         if (processors == null || processors.isEmpty()) {
             return;
         }
-        processors.forEach(p -> p.process());
+        processors.forEach(p -> p.doProcess());
     }
 
     public String text() {
         try {
             OutputFormat format = new OutputFormat();
             format.setIndent(true);
-            format.setNewlines(true);
             format.setNewLineAfterDeclaration(false);
             StringWriter writer = new StringWriter();
             XMLWriter xmlWriter = new XMLWriter(writer, format);

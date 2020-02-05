@@ -39,12 +39,12 @@ public class SortAction extends AnAction {
         final PsiFile psiFile = PsiUtil.getPsiFile(e);
 
         SortPomProcessor processor = new SortPomProcessor(PsiUtil.getText(psiFile));
-        processor.sequenceProcess();
+        processor.process();
         final String result = processor.text();
 
         WriteCommandAction.runWriteCommandAction(PsiUtil.getProject(e), () -> {
-            PsiUtil.reformat(psiFile);
             writeXmlFile(psiFile, result);
+            PsiUtil.reformat(psiFile);
         });
     }
 

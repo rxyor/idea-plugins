@@ -35,7 +35,7 @@ public class SortPomProcessor extends AbstractPomProcessor {
     }
 
     @Override
-    public void process() {
+    protected void doProcess() {
         sort();
     }
 
