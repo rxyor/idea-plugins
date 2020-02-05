@@ -4,7 +4,9 @@ import com.github.rxyor.plugin.pom.assistant.common.constant.ValidConst.NoNull;
 import com.google.common.base.Preconditions;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
+import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
@@ -20,9 +22,21 @@ import org.jetbrains.annotations.NotNull;
  * @date 2020/2/2 周日 21:50:00
  * @since 1.0.0
  */
-public class PsiFileUtil {
+public class PsiUtil {
 
-    private PsiFileUtil() {
+    private PsiUtil() {
+    }
+
+    /**
+     *get Project from AnActionEvent
+     *
+     * @author liuyang
+     * @date 2020-02-03 周一 00:17:41
+     * @param e
+     * @return
+     */
+    public static Project getProject(@NotNull AnActionEvent e) {
+        return e.getData(PlatformDataKeys.PROJECT);
     }
 
     /**

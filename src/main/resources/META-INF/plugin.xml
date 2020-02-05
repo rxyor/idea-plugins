@@ -60,12 +60,18 @@
             text="Extract Version" description="extract version and replace placeholder">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
         </action>
+        <action id="SortAction"
+            class="com.github.rxyor.plugin.pom.assistant.action.SortAction"
+            text="Sort" description="sort pom tag">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after"/>
+        </action>
 
         <group id="PomAssistant" popup="true" text="Pom Assistant" icon="PomAssistantPluginIcons.mavenLogo">
             <add-to-group group-id="EditorPopupMenu" anchor="after"
                 relative-to-action="CopyReference"/>
             <add-to-group group-id="ToolsMenu" anchor="first"/>
             <reference ref="ExtractVersionAction"/>
+            <reference ref="SortAction"/>
         </group>
     </actions>
 

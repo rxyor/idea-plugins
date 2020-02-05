@@ -6,7 +6,7 @@ import com.github.rxyor.plugin.pom.assistant.common.maven.util.MavenDependencyUt
 import com.github.rxyor.plugin.pom.assistant.common.maven.util.MavenProjectUtil;
 import com.github.rxyor.plugin.pom.assistant.common.maven.util.MavenPropertyUtil;
 import com.github.rxyor.plugin.pom.assistant.common.notification.util.NotificationUtil;
-import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiFileUtil;
+import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiUtil;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.Presentation;
@@ -35,7 +35,7 @@ public class ExtractVersionAction extends AnAction {
     @Override
     public void update(@NotNull AnActionEvent e) {
         final Presentation presentation = e.getPresentation();
-        VirtualFile virtualFile = PsiFileUtil.getVirtualFile(e);
+        VirtualFile virtualFile = PsiUtil.getVirtualFile(e);
         boolean isMavenProjectFile = MavenActionUtil.isMavenProjectFile(virtualFile);
         if (isMavenProjectFile) {
             presentation.setEnabledAndVisible(true);
@@ -59,11 +59,11 @@ public class ExtractVersionAction extends AnAction {
      * @param e
      */
     private void extractAndReplaceVersion(final AnActionEvent e) {
-        final PsiFile psiFile = PsiFileUtil.getPsiFile(e);
+        final PsiFile psiFile = PsiUtil.getPsiFile(e);
         if (checkMavenProjectFile(psiFile)) {
             return;
         }
-        final PsiElement psiElement = PsiFileUtil.getClickPsiElement(e);
+        final PsiElement psiElement = PsiUtil.getClickPsiElement(e);
         final MavenDomProjectModel model = MavenProjectUtil
             .getMavenDomProjectModel(psiFile);
 
@@ -89,8 +89,8 @@ public class ExtractVersionAction extends AnAction {
         removeDependency(dependencyPair);
 
         //格式化并刷新文件
-        PsiFileUtil.reformat(psiFile);
-        PsiFileUtil.refresh(psiFile);
+        PsiUtil.reformat(psiFile);
+        PsiUtil.refresh(psiFile);
     }
 
     /**
