@@ -26,7 +26,6 @@ public class SortOrderConfig {
         Map<String, Integer> project = new HashMap<>(16);
         ORDER_CONFIG.put(PomTag.PROJECT, project);
         int projectI = 0;
-        project.put(PomTag.URL, projectI++);
         project.put(PomTag.MODEL_VERSION, projectI++);
         project.put(PomTag.PARENT, projectI++);
         project.put(PomTag.GROUP_ID, projectI++);
@@ -34,6 +33,7 @@ public class SortOrderConfig {
         project.put(PomTag.VERSION, projectI++);
         project.put(PomTag.PACKAGING, projectI++);
         project.put(PomTag.NAME, projectI++);
+        project.put(PomTag.URL, projectI++);
         project.put(PomTag.MODULES, projectI++);
         project.put(PomTag.PROPERTIES, projectI++);
         project.put(PomTag.DEPENDENCIES, projectI++);

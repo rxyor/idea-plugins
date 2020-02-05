@@ -3,15 +3,16 @@ package com.github.rxyor.plugin.pom.assistant.common.dom.processor;
 
 import com.github.rxyor.plugin.pom.assistant.common.constant.PluginConst.PomTag;
 import com.github.rxyor.plugin.pom.assistant.common.dom.model.SortOrderConfig;
-import java.io.StringWriter;
+import com.google.common.collect.Lists;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import org.dom4j.Comment;
 import org.dom4j.Element;
-import org.dom4j.io.OutputFormat;
-import org.dom4j.io.XMLWriter;
+import org.dom4j.Node;
 
 /**
  *<p>
@@ -30,7 +31,7 @@ public class SortPomProcessor extends AbstractPomProcessor {
 
     public SortPomProcessor(String text,
         AbstractPomProcessor processor) {
-        super(text, processor);
+        super(processor);
     }
 
     @Override
@@ -38,27 +39,19 @@ public class SortPomProcessor extends AbstractPomProcessor {
         sort();
     }
 
-    public String toText() {
-        try {
-            OutputFormat format = new OutputFormat();
-            format.setIndent(true);
-            format.setNewlines(true);
-            format.setNewLineAfterDeclaration(false);
-            StringWriter writer = new StringWriter();
-            XMLWriter xmlWriter = new XMLWriter(writer, format);
-            xmlWriter.write(this.document);
-            xmlWriter.close();
-            return writer.toString();
-        } catch (Exception e) {
-            return this.document.getXMLEncoding();
-        }
-    }
-
     private void sort() {
-        this.sort(super.document.getRootElement());
+        this.recursivelySort(super.document.getRootElement());
     }
 
-    private void sort(Element cur) {
+    /**
+     *递归排序
+     *
+     * @author liuyang
+     * @date 2020-02-06 周四 00:43:10
+     * @param cur cur
+     * @return
+     */
+    private void recursivelySort(Element cur) {
         if (cur == null || cur.elements().isEmpty()) {
             return;
         }
@@ -66,21 +59,73 @@ public class SortPomProcessor extends AbstractPomProcessor {
         List<Element> list = cur.elements();
         Iterator<Element> it = list.iterator();
         while (it.hasNext()) {
-            this.sort(it.next());
+            this.recursivelySort(it.next());
         }
 
+        //注释分组
+        final Map<Element, List<Comment>> commentGroup = groupComment(cur);
+        //标签排序
         list.sort(new SortComparator());
+        //清空标签
         cur.clearContent();
-        list.forEach(e -> cur.add(e));
+        //恢复子级标签以及注释
+        list.forEach(e -> {
+            List<Comment> comments = commentGroup.get(e);
+            comments.forEach(c -> cur.add(c));
+            cur.add(e);
+        });
         System.out.println(list);
     }
 
+    /**
+     *给元素的注释分组
+     *
+     * @author liuyang
+     * @date 2020-02-06 周四 00:43:51
+     * @param cur cur
+     * @return
+     */
+    private Map<Element, List<Comment>> groupComment(Element cur) {
+        final Map<Element, List<Comment>> group = new HashMap<>(4);
+        Iterator<Node> it = cur.nodeIterator();
+        if (cur == null || !it.hasNext()) {
+            return group;
+        }
+
+        LinkedList<Comment> comments = new LinkedList<>();
+        while (it.hasNext()) {
+            Node node = it.next();
+            if (node instanceof Comment) {
+                comments.add((Comment) node);
+            } else if (node instanceof Element) {
+                group.put((Element) node, Lists.newArrayList(comments));
+                //reset list
+                comments.clear();
+            }
+        }
+
+        return group;
+    }
+
+    /**
+     *<p>
+     * 排序比较器
+     *</p>
+     *
+     * @author liuyang
+     * @date 2020-02-06 周四 00:29:34
+     * @since 1.0.0
+     */
     private static class SortComparator implements Comparator<Element> {
 
+        /**
+         * 那些标签需要比较Value或者Text
+         */
         public static final Map<String, Boolean> COMPARE_VALUE_TAG_MAP = new HashMap<>(8);
 
         static {
             COMPARE_VALUE_TAG_MAP.put(PomTag.GROUP_ID, true);
+            COMPARE_VALUE_TAG_MAP.put(PomTag.MODULE, true);
         }
 
         @Override
@@ -139,6 +184,7 @@ public class SortPomProcessor extends AbstractPomProcessor {
             if (ret != 0) {
                 return ret;
             } else {
+                //递归比较，直到比较出结果
                 return compareByName(getElementFirst(o1.elements()),
                     getElementFirst(o2.elements()));
             }

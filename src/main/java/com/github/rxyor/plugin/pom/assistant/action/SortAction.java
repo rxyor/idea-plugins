@@ -1,12 +1,15 @@
 package com.github.rxyor.plugin.pom.assistant.action;
 
+import com.github.rxyor.plugin.pom.assistant.common.constant.PluginConst.App;
 import com.github.rxyor.plugin.pom.assistant.common.dom.processor.SortPomProcessor;
 import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiUtil;
 import com.intellij.ide.highlighter.XmlFileType;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiFileFactory;
 import com.intellij.psi.xml.XmlFile;
@@ -25,24 +28,33 @@ public class SortAction extends AnAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
+        CommandProcessor.getInstance().executeCommand(e.getProject(),
+            (Runnable) () -> {
+                sort(e);
+            }
+            , App.GROUP_ID, App.GROUP_ID);
+    }
+
+    private void sort(AnActionEvent e) {
         final PsiFile psiFile = PsiUtil.getPsiFile(e);
-        Document document = this.getDocument(psiFile);
-        String source = document.getText();
-        SortPomProcessor processor = new SortPomProcessor(source);
-        processor.process();
-        String result = processor.toText();
-        final XmlFile xmlFile = (XmlFile) PsiFileFactory.getInstance(psiFile.getProject())
-            .createFileFromText("", XmlFileType.INSTANCE, result);
-        PsiUtil.reformat(psiFile);
-        WriteCommandAction.runWriteCommandAction(PsiUtil.getProject(e),
-            () -> document.setText(xmlFile.getText()));
+
+        SortPomProcessor processor = new SortPomProcessor(PsiUtil.getText(psiFile));
+        processor.sequenceProcess();
+        final String result = processor.text();
+
+        WriteCommandAction.runWriteCommandAction(PsiUtil.getProject(e), () -> {
+            PsiUtil.reformat(psiFile);
+            writeXmlFile(psiFile, result);
+        });
     }
 
-    private Document getDocument(@NotNull PsiFile psiFile) {
-        return psiFile.getViewProvider().getDocument();
+    private void writeXmlFile(@NotNull PsiFile psiFile, @NotNull String context) {
+        final Project project = psiFile.getProject();
+        final Document document = PsiUtil.getDocument(psiFile);
+        final XmlFile xmlFile = (XmlFile) PsiFileFactory.getInstance(project)
+            .createFileFromText("", XmlFileType.INSTANCE, context);
+        document.setText(xmlFile.getText());
     }
 
-    protected String format(String text) {
-        return null;
-    }
+
 }

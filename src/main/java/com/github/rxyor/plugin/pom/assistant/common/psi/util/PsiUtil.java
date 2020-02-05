@@ -5,6 +5,7 @@ import com.google.common.base.Preconditions;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
+import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -95,6 +96,30 @@ public class PsiUtil {
         Preconditions.checkNotNull(e, NoNull.AnActionEvent);
 
         return e.getData(CommonDataKeys.EDITOR);
+    }
+
+    /**
+     *get Document from PsiFile
+     *
+     * @author liuyang
+     * @date 2020-02-06 周四 00:59:05
+     * @param psiFile
+     * @return
+     */
+    public static Document getDocument(@NotNull PsiFile psiFile) {
+        return psiFile.getViewProvider().getDocument();
+    }
+
+    /**
+     *get Document from PsiFile
+     *
+     * @author liuyang
+     * @date 2020-02-06 周四 00:59:05
+     * @param psiFile
+     * @return
+     */
+    public static String getText(@NotNull PsiFile psiFile) {
+        return getDocument(psiFile).getText();
     }
 
     /**

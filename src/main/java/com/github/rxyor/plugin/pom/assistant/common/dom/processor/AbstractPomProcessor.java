@@ -1,10 +1,14 @@
 package com.github.rxyor.plugin.pom.assistant.common.dom.processor;
 
-import java.util.ArrayList;
+import java.io.StringWriter;
+import java.util.LinkedList;
 import java.util.List;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
+import org.jetbrains.annotations.NotNull;
 
 /**
  *<p>
@@ -18,7 +22,7 @@ import org.dom4j.DocumentHelper;
 public abstract class AbstractPomProcessor {
 
     protected final Document document;
-    protected List<AbstractPomProcessor> processors = new ArrayList<>(4);
+    protected final List<AbstractPomProcessor> processors = new LinkedList<>();
 
     public AbstractPomProcessor(String text) {
         try {
@@ -29,13 +33,33 @@ public abstract class AbstractPomProcessor {
         }
     }
 
-    public AbstractPomProcessor(String text,
-        AbstractPomProcessor processor) {
-        this(text);
-        if (processor != null) {
-            this.processors.add(processor);
-        }
+    public AbstractPomProcessor(@NotNull AbstractPomProcessor processor) {
+        this.document = processor.document;
+        this.processors.add(processor);
     }
 
     public abstract void process();
+
+    public void sequenceProcess() {
+        if (processors == null || processors.isEmpty()) {
+            return;
+        }
+        processors.forEach(p -> p.process());
+    }
+
+    public String text() {
+        try {
+            OutputFormat format = new OutputFormat();
+            format.setIndent(true);
+            format.setNewlines(true);
+            format.setNewLineAfterDeclaration(false);
+            StringWriter writer = new StringWriter();
+            XMLWriter xmlWriter = new XMLWriter(writer, format);
+            xmlWriter.write(this.document);
+            xmlWriter.close();
+            return writer.toString();
+        } catch (Exception e) {
+            return this.document.getXMLEncoding();
+        }
+    }
 }

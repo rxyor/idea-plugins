@@ -33,7 +33,6 @@ public interface PluginConst {
     interface PomTag {
 
         String PROJECT = "project";
-        String URL = "url";
         String MODEL_VERSION = "modelVersion";
         String PARENT = "parent";
         String GROUP_ID = "groupId";
@@ -41,6 +40,7 @@ public interface PluginConst {
         String VERSION = "version";
         String PACKAGING = "packaging";
         String NAME = "name";
+        String URL = "url";
         String MODULES = "modules";
         String PROPERTIES = "properties";
         String DEPENDENCIES = "dependencies";
@@ -51,6 +51,7 @@ public interface PluginConst {
         String PLUGIN_REPOSITORIES = "pluginRepositories";
 
 
+        String MODULE = "module";
         String PROPERTY = "property";
         String DEPENDENCY = "dependency";
     }
