@@ -1,6 +1,7 @@
 package com.github.rxyor.plugin.pom.assistant.action;
 
 import com.github.rxyor.plugin.pom.assistant.common.constant.PluginConst.App;
+import com.github.rxyor.plugin.pom.assistant.common.dom.processor.FormatPomProcessor;
 import com.github.rxyor.plugin.pom.assistant.common.dom.processor.SortPomProcessor;
 import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiUtil;
 import com.intellij.ide.highlighter.XmlFileType;
@@ -38,9 +39,10 @@ public class SortAction extends AnAction {
     private void sort(AnActionEvent e) {
         final PsiFile psiFile = PsiUtil.getPsiFile(e);
 
-        SortPomProcessor processor = new SortPomProcessor(PsiUtil.getText(psiFile));
-        processor.process();
-        final String result = processor.text();
+        SortPomProcessor sortPomProcessor = new SortPomProcessor(PsiUtil.getText(psiFile));
+        FormatPomProcessor formatPomProcessor = new FormatPomProcessor(sortPomProcessor);
+        formatPomProcessor.process();
+        final String result = formatPomProcessor.text();
 
         WriteCommandAction.runWriteCommandAction(PsiUtil.getProject(e), () -> {
             writeXmlFile(psiFile, result);

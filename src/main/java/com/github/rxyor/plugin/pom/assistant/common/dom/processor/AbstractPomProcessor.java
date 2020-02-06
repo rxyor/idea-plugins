@@ -36,7 +36,8 @@ public abstract class AbstractPomProcessor {
 
     public AbstractPomProcessor(@NotNull AbstractPomProcessor processor) {
         this.document = processor.document;
-        processors.add(this);
+        this.processors.addAll(processor.processors);
+        this.processors.add(this);
     }
 
     protected abstract void doProcess();
