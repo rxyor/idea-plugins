@@ -50,7 +50,7 @@ public class FormatPomProcessor extends AbstractPomProcessor {
         }
 
         FormatConfig config = FormatConfig.getInstance();
-        String newline = config.getNewline(cur.getName());
+        String newline = config.getNewlineByPath(cur.getPath());
         if (newline == null) {
             return;
         }

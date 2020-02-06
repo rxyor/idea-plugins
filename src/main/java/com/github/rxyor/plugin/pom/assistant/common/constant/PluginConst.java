@@ -49,6 +49,7 @@ public interface PluginConst {
         String REPOSITORIES = "repositories";
         String DISTRIBUTION_MANAGEMENT = "distributionManagement";
         String PLUGIN_REPOSITORIES = "pluginRepositories";
+        String BUILD = "build";
 
 
         String MODULE = "module";

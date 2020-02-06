@@ -74,7 +74,6 @@ public class SortPomProcessor extends AbstractPomProcessor {
             comments.forEach(c -> cur.add(c));
             cur.add(e);
         });
-        System.out.println(list);
     }
 
     /**

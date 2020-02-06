@@ -11,6 +11,7 @@ import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.project.Project;
+import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiFileFactory;
 import com.intellij.psi.xml.XmlFile;
@@ -43,7 +44,6 @@ public class SortAction extends AnAction {
         FormatPomProcessor formatPomProcessor = new FormatPomProcessor(sortPomProcessor);
         formatPomProcessor.process();
         final String result = formatPomProcessor.text();
-
         WriteCommandAction.runWriteCommandAction(PsiUtil.getProject(e), () -> {
             writeXmlFile(psiFile, result);
             PsiUtil.reformat(psiFile);
@@ -56,6 +56,7 @@ public class SortAction extends AnAction {
         final XmlFile xmlFile = (XmlFile) PsiFileFactory.getInstance(project)
             .createFileFromText("", XmlFileType.INSTANCE, context);
         document.setText(xmlFile.getText());
+        PsiDocumentManager.getInstance(project).commitDocument(document);
     }
 
 
