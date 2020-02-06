@@ -17,31 +17,47 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class SortOrderConfig {
 
-    public final static Map<String, Map<String, Integer>> ORDER_CONFIG = new HashMap<>(16);
+    public final static Map<String, Map<String, Integer>> TAG_ORDER_CONFIG = new HashMap<>(16);
 
     private final static SortOrderConfig INSTANCE = new SortOrderConfig();
 
     static {
         //project root tag
         Map<String, Integer> project = new HashMap<>(16);
-        ORDER_CONFIG.put(PomTag.PROJECT, project);
-        int projectI = 0;
-        project.put(PomTag.MODEL_VERSION, projectI++);
-        project.put(PomTag.PARENT, projectI++);
-        project.put(PomTag.GROUP_ID, projectI++);
-        project.put(PomTag.ARTIFACT_ID, projectI++);
-        project.put(PomTag.VERSION, projectI++);
-        project.put(PomTag.PACKAGING, projectI++);
-        project.put(PomTag.NAME, projectI++);
-        project.put(PomTag.URL, projectI++);
-        project.put(PomTag.MODULES, projectI++);
-        project.put(PomTag.PROPERTIES, projectI++);
-        project.put(PomTag.DEPENDENCIES, projectI++);
-        project.put(PomTag.DEPENDENCY_MANAGEMENT, projectI++);
-        project.put(PomTag.PROFILES, projectI++);
-        project.put(PomTag.REPOSITORIES, projectI++);
-        project.put(PomTag.DISTRIBUTION_MANAGEMENT, projectI++);
-        project.put(PomTag.PLUGIN_REPOSITORIES, projectI++);
+        TAG_ORDER_CONFIG.put(PomTag.PROJECT, project);
+        int i = 0;
+        project.put(PomTag.MODEL_VERSION, i++);
+        project.put(PomTag.PARENT, i++);
+        project.put(PomTag.GROUP_ID, i++);
+        project.put(PomTag.ARTIFACT_ID, i++);
+        project.put(PomTag.VERSION, i++);
+        project.put(PomTag.PACKAGING, i++);
+        project.put(PomTag.NAME, i++);
+        project.put(PomTag.URL, i++);
+        project.put(PomTag.MODULES, i++);
+        project.put(PomTag.PROPERTIES, i++);
+        project.put(PomTag.DEPENDENCIES, i++);
+        project.put(PomTag.DEPENDENCY_MANAGEMENT, i++);
+        project.put(PomTag.PROFILES, i++);
+        project.put(PomTag.REPOSITORIES, i++);
+        project.put(PomTag.DISTRIBUTION_MANAGEMENT, i++);
+        project.put(PomTag.PLUGIN_REPOSITORIES, i++);
+
+        //project root tag
+        Map<String, Integer> properties = new HashMap<>(16);
+        TAG_ORDER_CONFIG.put(PomTag.PROPERTIES, properties);
+        i = 0;
+        properties.put("java.version", i++);
+        properties.put("java.encoding", i++);
+        properties.put("project.encoding", i++);
+        properties.put("app.name", i++);
+        properties.put("timestamp", i++);
+        properties.put("maven.test.skip", i++);
+        properties.put("maven.test.failure.ignore", i++);
+        properties.put("maven.compiler.source", i++);
+        properties.put("maven.compiler.target", i++);
+        properties.put("maven.compiler.compilerVersion", i++);
+        properties.put("maven.build.timestamp.format", i++);
     }
 
     private SortOrderConfig() {
@@ -60,8 +76,8 @@ public class SortOrderConfig {
         if (StringUtils.isBlank(tag)) {
             return new HashMap<>(0);
         }
-        Map<String, Integer> config = Optional.ofNullable(ORDER_CONFIG.get(tag))
-            .orElse(ORDER_CONFIG.get(PomTag.PROJECT));
+        Map<String, Integer> config = Optional.ofNullable(TAG_ORDER_CONFIG.get(tag))
+            .orElse(TAG_ORDER_CONFIG.get(PomTag.PROJECT));
         return Optional.ofNullable(config).orElse(new HashMap<>(0));
     }
 }

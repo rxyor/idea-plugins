@@ -5,7 +5,6 @@ import com.github.rxyor.plugin.pom.assistant.common.dom.processor.FormatPomProce
 import com.github.rxyor.plugin.pom.assistant.common.dom.processor.SortPomProcessor;
 import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiUtil;
 import com.intellij.ide.highlighter.XmlFileType;
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.command.WriteCommandAction;
@@ -26,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
  * @date 2020/2/4 周二 14:47:00
  * @since 1.0.0
  */
-public class SortAction extends AnAction {
+public class SortAction extends AbstractPomAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
@@ -39,6 +38,9 @@ public class SortAction extends AnAction {
 
     private void sort(AnActionEvent e) {
         final PsiFile psiFile = PsiUtil.getPsiFile(e);
+        if (checkMavenProjectFile(psiFile)) {
+            return;
+        }
 
         SortPomProcessor sortPomProcessor = new SortPomProcessor(PsiUtil.getText(psiFile));
         FormatPomProcessor formatPomProcessor = new FormatPomProcessor(sortPomProcessor);

@@ -1,40 +1,49 @@
 <idea-plugin version="2">
     <id>com.github.rxyor.plugin.pom.assistant</id>
     <name>Pom Assistant</name>
-    <version>1.1</version>
+    <version>1.2</version>
     <vendor email="rxyor@outlook.com" url="https://github.com/rxyor/idea-plugins">Chi Yo</vendor>
+    <category>Formatting</category>
 
     <description><![CDATA[
-    <tag>Pom Assistant, Simplify The Operation Of pom.xml<tag>
-    <h4>Pom Assistant is tool to help you operate pom.xml simply</h4>
-    <h3>English:</h3>
-    <ul>
-    <li>A plugin based on IntelliJ IDEA which can help you operate pom.xml simply, eg: </li>
-    <li>Extract dependency version from dependency tag into properties tag </li>
-    </ul>
+    <p>
+        <h2>Pom Assistant, help you operate pom.xml simply for maven project.<h2><br>
+    </p>
 
-    <h3>中文：</h3>
-    <ul>
-    <li>基于IntelliJ IDEA的一款插件，能帮助你简化做一些pom文件操作, 比如: </li>
-    <li>提取依赖的版本号到属性标签里</li>
-    </ul>
+    <p>
+        The plugin can help you replace version with placeholder, sort pom.xml.<br>
+    </p>
+    <p>
+        <h3>English</h3>
+        <h4>Pom Assistant<h4>
+                <ul>
+                    <li>Replace Version </li>
+                    <li>Sort And Format </li>
+                </ul>
+    </p>
+    <p>
+        <h3>中文</h3>
+        <h4>Pom Assistant<h4>
+        <ul>
+            <li>替换版本号</li>
+            <li>排序和格式化</li>
+        </ul>
+    </p>
     ]]></description>
 
     <change-notes><![CDATA[
-     <p>1.0</p>
-     <ul>
-        <li>1.Extract dependency version from dependency tag into properties tag</li>
-     </ul>
-     <ul>
-        <li>1.提取依赖的版本号到属性标签里</li>
-     </ul>
-          <p>1.1</p>
-     <ul>
-        <li>1.Fix bug</li>
-     </ul>
-     <ul>
-        <li>1.修复bug</li>
-     </ul>
+    <h5>1.0</h5>
+    <ul>
+        <li>Replace dependency version</li>
+    </ul>
+    <h5>1.1</h5>
+    <ul>
+        <li>Fix bug:A NullPointerException</li>
+    </ul>
+    <h5>1.2</h5>
+    <ul>
+        <li>Feat:Sort pom.xml</li>
+    </ul>
     ]]>
     </change-notes>
 
