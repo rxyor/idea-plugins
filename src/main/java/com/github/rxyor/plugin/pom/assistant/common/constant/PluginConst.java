@@ -41,6 +41,7 @@ public interface PluginConst {
         String PACKAGING = "packaging";
         String NAME = "name";
         String URL = "url";
+        String DESCRIPTION = "description";
         String MODULES = "modules";
         String PROPERTIES = "properties";
         String DEPENDENCIES = "dependencies";
