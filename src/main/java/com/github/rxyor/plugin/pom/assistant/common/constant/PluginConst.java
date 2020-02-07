@@ -56,6 +56,7 @@ public interface PluginConst {
         String MODULE = "module";
         String PROPERTY = "property";
         String DEPENDENCY = "dependency";
+        String PLUGIN = "plugin";
     }
 
     interface XmlTag {
