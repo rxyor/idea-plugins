@@ -11,6 +11,8 @@ targetCompatibility = JavaVersion.VERSION_1_8
 intellij {
     version '2019.3.1'
     type 'IU'
+    updateSinceUntilBuild false
+    sameSinceUntilBuild false
     pluginName 'Pom Assistant'
     plugins = ['maven']
 }
