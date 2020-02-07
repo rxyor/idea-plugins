@@ -303,12 +303,10 @@ public class MavenDependencyUtil {
      * @param psiElement
      * @return
      */
+    @SuppressWarnings("all")
     public static MavenId getClickMavenId(@NotNull PsiElement psiElement) {
 
         XmlTag dependencyTag = findDependencyTag(psiElement);
-        if (dependencyTag == null) {
-            dependencyTag = findPluginTag(psiElement);
-        }
         if (dependencyTag == null) {
             return null;
         }
@@ -333,21 +331,6 @@ public class MavenDependencyUtil {
     }
 
     /**
-     *寻找点击的标签的父标签类型
-     *
-     * @param element
-     * @return
-     */
-    public static TagType findClickParentTagType(@NotNull PsiElement element) {
-        if (findDependencyTag(element) != null) {
-            return TagType.dependency;
-        } else if (findPluginTag(element) != null) {
-            return TagType.plugin;
-        }
-        return null;
-    }
-
-    /**
      *寻找点击的dependency标签
      *
      * @author liuyang
@@ -355,7 +338,7 @@ public class MavenDependencyUtil {
      * @param element
      * @return
      */
-    private static XmlTag findDependencyTag(@NotNull PsiElement element) {
+    public static XmlTag findDependencyTag(@NotNull PsiElement element) {
 
         if (element instanceof XmlToken) {
             PsiElement p = element.getParent();
@@ -377,44 +360,5 @@ public class MavenDependencyUtil {
             return parentTag;
         }
         return null;
-    }
-
-    /**
-     *寻找点击的plugin标签
-     *
-     * @author liuyang
-     * @date 2020-02-03 周一 16:45:41
-     * @param element
-     * @return
-     */
-    private static XmlTag findPluginTag(@NotNull PsiElement element) {
-
-        if (element instanceof XmlToken) {
-            PsiElement p = element.getParent();
-            XmlTag parentTag = null;
-            if (p instanceof XmlText) {
-                XmlText parent = (XmlText) p;
-                XmlToken nextSibling = (XmlToken) parent.getNextSibling();
-                parentTag = (XmlTag) nextSibling.getParent();
-
-            } else if (p instanceof XmlTag) {
-                parentTag = (XmlTag) p;
-            }
-
-            while (parentTag != null
-                && !parentTag.toString().replaceAll(PluginConst.XmlTag.PREFIX, "")
-                .equalsIgnoreCase(PomTag.PLUGIN)) {
-                parentTag = parentTag.getParentTag();
-            }
-            return parentTag;
-        }
-        return null;
-    }
-
-    /**
-     * 标签类型
-     */
-    public enum TagType {
-        plugin, dependency
     }
 }

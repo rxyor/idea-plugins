@@ -1,7 +1,7 @@
-<idea-plugin version="2">
+<idea-plugin>
     <id>com.github.rxyor.plugin.pom.assistant</id>
     <name>Pom Assistant</name>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
     <vendor email="rxyor@outlook.com" url="https://github.com/rxyor/idea-plugins">Chi Yo</vendor>
 
     <description><![CDATA[
@@ -43,6 +43,10 @@
     <h5>1.2.2</h5>
     <ul>
         <li>Add <description> tag for sorting</li>
+    </ul>
+    <h5>1.2.2</h5>
+    <ul>
+        <li>Add pom plugin tag replace version</li>
     </ul>
     ]]>
     </change-notes>
