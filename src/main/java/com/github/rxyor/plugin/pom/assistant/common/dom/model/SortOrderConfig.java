@@ -34,6 +34,7 @@ public class SortOrderConfig {
         project.put(PomTag.PACKAGING, i++);
         project.put(PomTag.NAME, i++);
         project.put(PomTag.URL, i++);
+        project.put(PomTag.DESCRIPTION, i++);
         project.put(PomTag.MODULES, i++);
         project.put(PomTag.PROPERTIES, i++);
         project.put(PomTag.DEPENDENCIES, i++);
