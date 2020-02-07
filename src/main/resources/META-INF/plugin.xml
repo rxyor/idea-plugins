@@ -1,34 +1,26 @@
 <idea-plugin version="2">
     <id>com.github.rxyor.plugin.pom.assistant</id>
     <name>Pom Assistant</name>
-    <version>1.2</version>
+    <version>1.2.1</version>
     <vendor email="rxyor@outlook.com" url="https://github.com/rxyor/idea-plugins">Chi Yo</vendor>
-    <category>Formatting</category>
 
     <description><![CDATA[
+    <h2>Pom Assistant</h2>
     <p>
-        <h2>Pom Assistant, help you operate pom.xml simply for maven project.<h2><br>
+        The plugin can help you operate pom.xml simply for maven project. eg: replace version with placeholder, sort pom.xml.<br>
     </p>
-
-    <p>
-        The plugin can help you replace version with placeholder, sort pom.xml.<br>
-    </p>
-    <p>
-        <h3>English</h3>
-        <h4>Pom Assistant<h4>
-                <ul>
-                    <li>Replace Version </li>
-                    <li>Sort And Format </li>
-                </ul>
-    </p>
-    <p>
-        <h3>中文</h3>
-        <h4>Pom Assistant<h4>
-        <ul>
-            <li>替换版本号</li>
-            <li>排序和格式化</li>
-        </ul>
-    </p>
+    <h3>English</h3>
+    <h4>Pom Assistant</h4>
+            <ul>
+                <li>Replace Version </li>
+                <li>Sort And Format </li>
+            </ul>
+    <h3>中文</h3>
+    <h4>Pom Assistant</h4>
+    <ul>
+        <li>替换版本号</li>
+        <li>排序和格式化</li>
+    </ul>
     ]]></description>
 
     <change-notes><![CDATA[
@@ -43,6 +35,10 @@
     <h5>1.2</h5>
     <ul>
         <li>Feat:Sort pom.xml</li>
+    </ul>
+    <h5>1.2.1</h5>
+    <ul>
+        <li>Set to support lower idea version</li>
     </ul>
     ]]>
     </change-notes>
@@ -72,12 +68,12 @@
         <action id="SortAction"
             class="com.github.rxyor.plugin.pom.assistant.action.SortAction"
             text="Sort" description="sort pom tag">
-            <add-to-group group-id="ProjectViewPopupMenu" anchor="after"/>
+            <add-to-group group-id="ProjectViewPopupMenu"/>
         </action>
         <action id="GroupSortAction"
             class="com.github.rxyor.plugin.pom.assistant.action.GroupSortAction"
             text="Sort Group" description="sort pom tag by comment group">
-            <add-to-group group-id="ProjectViewPopupMenu" anchor="after"/>
+            <add-to-group group-id="ProjectViewPopupMenu"/>
         </action>
 
         <group id="PomAssistant" popup="true" text="Pom Assistant"
