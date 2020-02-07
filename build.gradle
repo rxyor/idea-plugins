@@ -11,12 +11,14 @@ targetCompatibility = JavaVersion.VERSION_1_8
 intellij {
     version '2019.3.1'
     type 'IU'
+    updateSinceUntilBuild false
+    sameSinceUntilBuild false
     pluginName 'Pom Assistant'
     plugins = ['maven']
 }
 
 group 'com.github.rxyor.plugin.pom.assistant'
-version '1.1'
+version '1.2.1'
 
 repositories {
     mavenCentral()
@@ -30,4 +32,5 @@ dependencies {
 
     compile group: 'com.google.guava', name: 'guava', version: '23.0'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    compile group: 'org.dom4j', name: 'dom4j', version: '2.1.1'
 }

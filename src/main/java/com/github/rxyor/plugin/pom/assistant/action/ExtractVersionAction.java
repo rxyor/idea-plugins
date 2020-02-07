@@ -6,13 +6,9 @@ import com.github.rxyor.plugin.pom.assistant.common.maven.util.MavenDependencyUt
 import com.github.rxyor.plugin.pom.assistant.common.maven.util.MavenProjectUtil;
 import com.github.rxyor.plugin.pom.assistant.common.maven.util.MavenPropertyUtil;
 import com.github.rxyor.plugin.pom.assistant.common.notification.util.NotificationUtil;
-import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiFileUtil;
-import com.intellij.openapi.actionSystem.AnAction;
+import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiUtil;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.command.CommandProcessor;
-import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import org.apache.commons.lang3.StringUtils;
@@ -20,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.idea.maven.dom.model.MavenDomDependency;
 import org.jetbrains.idea.maven.dom.model.MavenDomProjectModel;
 import org.jetbrains.idea.maven.model.MavenId;
-import org.jetbrains.idea.maven.utils.actions.MavenActionUtil;
 
 /**
  *<p>
@@ -31,19 +26,8 @@ import org.jetbrains.idea.maven.utils.actions.MavenActionUtil;
  * @date 2020/1/27 周一 15:31:00
  * @since 1.0.0
  */
-public class ExtractVersionAction extends AnAction {
+public class ExtractVersionAction extends AbstractPomAction {
 
-    @Override
-    public void update(@NotNull AnActionEvent e) {
-        final Presentation presentation = e.getPresentation();
-        VirtualFile virtualFile = PsiFileUtil.getVirtualFile(e);
-        boolean isMavenProjectFile = MavenActionUtil.isMavenProjectFile(virtualFile);
-        if (isMavenProjectFile) {
-            presentation.setEnabledAndVisible(true);
-        } else {
-            presentation.setVisible(false);
-        }
-    }
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
@@ -60,12 +44,11 @@ public class ExtractVersionAction extends AnAction {
      * @param e
      */
     private void extractAndReplaceVersion(final AnActionEvent e) {
-        final PsiFile psiFile = PsiFileUtil.getPsiFile(e);
+        final PsiFile psiFile = PsiUtil.getPsiFile(e);
         if (checkMavenProjectFile(psiFile)) {
             return;
         }
-        final Editor editor = PsiFileUtil.getEditor(e);
-        final PsiElement psiElement = PsiFileUtil.getClickPsiElement(e);
+        final PsiElement psiElement = PsiUtil.getClickPsiElement(e);
         final MavenDomProjectModel model = MavenProjectUtil
             .getMavenDomProjectModel(psiFile);
 
@@ -91,22 +74,8 @@ public class ExtractVersionAction extends AnAction {
         removeDependency(dependencyPair);
 
         //格式化并刷新文件
-        PsiFileUtil.reformat(psiFile);
-        PsiFileUtil.refresh(psiFile);
-    }
-
-    /**
-     * 检查点击文件是否有效的maven工程文件
-     *
-     * @param psiFile
-     * @return
-     */
-    private boolean checkMavenProjectFile(PsiFile psiFile) {
-        if (!MavenActionUtil.isMavenProjectFile(psiFile.getVirtualFile())) {
-            NotificationUtil.warn("Warn", "Click file is not valid maven project file");
-            return true;
-        }
-        return false;
+        PsiUtil.reformat(psiFile);
+        PsiUtil.refresh(psiFile);
     }
 
     /**

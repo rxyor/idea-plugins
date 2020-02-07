@@ -3,7 +3,7 @@ package com.github.rxyor.plugin.pom.assistant.common.maven.util;
 import com.github.rxyor.plugin.pom.assistant.common.constant.PluginConst;
 import com.github.rxyor.plugin.pom.assistant.common.constant.PluginConst.PomTag;
 import com.github.rxyor.plugin.pom.assistant.common.maven.model.DependencyPair;
-import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiFileUtil;
+import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiUtil;
 import com.google.common.collect.Lists;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.editor.Editor;
@@ -291,7 +291,7 @@ public class MavenDependencyUtil {
      * @return
      */
     public static MavenId getClickMavenId(@NotNull AnActionEvent e) {
-        PsiElement psiElement = PsiFileUtil.getClickPsiElement(e);
+        PsiElement psiElement = PsiUtil.getClickPsiElement(e);
         return getClickMavenId(psiElement);
     }
 

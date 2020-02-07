@@ -32,15 +32,29 @@ public interface PluginConst {
 
     interface PomTag {
 
-        String DEPENDENCY_MANAGEMENT = "dependencyManagement";
-        String DEPENDENCIES = "dependencies";
-        String DEPENDENCY = "dependency";
+        String PROJECT = "project";
+        String MODEL_VERSION = "modelVersion";
+        String PARENT = "parent";
         String GROUP_ID = "groupId";
         String ARTIFACT_ID = "artifactId";
         String VERSION = "version";
-
+        String PACKAGING = "packaging";
+        String NAME = "name";
+        String URL = "url";
+        String MODULES = "modules";
         String PROPERTIES = "properties";
+        String DEPENDENCIES = "dependencies";
+        String DEPENDENCY_MANAGEMENT = "dependencyManagement";
+        String PROFILES = "profiles";
+        String REPOSITORIES = "repositories";
+        String DISTRIBUTION_MANAGEMENT = "distributionManagement";
+        String PLUGIN_REPOSITORIES = "pluginRepositories";
+        String BUILD = "build";
+
+
+        String MODULE = "module";
         String PROPERTY = "property";
+        String DEPENDENCY = "dependency";
     }
 
     interface XmlTag {
