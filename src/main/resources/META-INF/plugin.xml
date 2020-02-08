@@ -83,6 +83,11 @@
             text="Sort Group" description="sort pom tag by comment group">
             <add-to-group group-id="ProjectViewPopupMenu"/>
         </action>
+        <action id="SearchAction"
+            class="com.github.rxyor.plugin.pom.assistant.action.SearchAction"
+            text="Search" description="sort pom tag by comment group">
+            <add-to-group group-id="ProjectViewPopupMenu"/>
+        </action>
 
         <group id="PomAssistant" popup="true" text="Pom Assistant"
             icon="PomAssistantPluginIcons.mavenLogo">
@@ -92,6 +97,7 @@
             <reference ref="ExtractVersionAction"/>
             <reference ref="SortAction"/>
             <reference ref="GroupSortAction"/>
+            <reference ref="SearchAction"/>
         </group>
     </actions>
 
