@@ -30,7 +30,7 @@ public class GroupSortAction extends AbstractPomAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         CommandProcessor.getInstance().executeCommand(e.getProject(),
-            (Runnable) () -> {
+            () -> {
                 sort(e);
             }
             , App.GROUP_ID, App.GROUP_ID);
