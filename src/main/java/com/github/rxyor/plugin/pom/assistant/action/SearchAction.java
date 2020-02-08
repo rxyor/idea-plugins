@@ -24,6 +24,6 @@ public class SearchAction extends AbstractPomAction {
     public void actionPerformed(@NotNull AnActionEvent e) {
         final Project project = PsiUtil.getProject(e);
         SearchDependencyDialog dialog = new SearchDependencyDialog(project);
-        dialog.popup(DIALOG_TITLE, new Dimension(400,200), null);
+        dialog.popup(DIALOG_TITLE, new Dimension(400,200), new Dimension(600,500));
     }
 }
