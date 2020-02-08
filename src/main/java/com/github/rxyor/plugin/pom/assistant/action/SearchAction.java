@@ -4,6 +4,7 @@ import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiUtil;
 import com.github.rxyor.plugin.pom.assistant.ui.maven.SearchDependencyDialog;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
+import java.awt.Dimension;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -23,6 +24,6 @@ public class SearchAction extends AbstractPomAction {
     public void actionPerformed(@NotNull AnActionEvent e) {
         final Project project = PsiUtil.getProject(e);
         SearchDependencyDialog dialog = new SearchDependencyDialog(project);
-        dialog.popup(DIALOG_TITLE, null, null);
+        dialog.popup(DIALOG_TITLE, new Dimension(400,200), null);
     }
 }
