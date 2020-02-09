@@ -1,21 +1,25 @@
 package com.github.rxyor.plugin.pom.assistant.ui.maven;
 
 import com.github.rxyor.plugin.pom.assistant.common.jsoup.parse.DependsSearchHelper;
+import com.github.rxyor.plugin.pom.assistant.common.jsoup.parse.ListVersionHelper;
 import com.github.rxyor.plugin.pom.assistant.common.jsoup.parse.Page;
+import com.google.common.base.Splitter;
 import com.intellij.openapi.project.Project;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import org.apache.commons.lang3.StringUtils;
+import org.jdesktop.swingx.combobox.ListComboBoxModel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.idea.maven.model.MavenId;
 
@@ -38,9 +42,14 @@ public class SearchDependencyDialog extends BaseDialog {
     private JList<String> searchRetList;
     private JScrollPane scrollPane;
     JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
-
+    private JTextArea dependDetail;
+    private JComboBox<String> versionBox;
+    private JButton copyBtn;
+    private JButton addBtn;
+    private JButton replaceBtn;
     private DefaultListModel<String> listModel = new DefaultListModel();
     private DependsSearchHelper searcher = null;
+    private MavenId clickMavenId = null;
 
     public SearchDependencyDialog(@NotNull Project project) {
         super(project);
@@ -57,22 +66,47 @@ public class SearchDependencyDialog extends BaseDialog {
     }
 
     private void initViewBindListener() {
+        //搜索按钮点击事件
         searchBtn.addActionListener(e -> {
             THREAD_POOL.submit(() -> doSearch());
         });
 
-        scrollBar.addAdjustmentListener(new AdjustmentListener() {
-            @Override
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                int curH = e.getValue();
-                int barLen = scrollBar.getHeight();
-                int listH = searchRetList.getHeight();
-                System.out.println(String.format("listH:%s, curH:%s,barLen:%s", listH, curH, barLen));
-                if (isCloseToBottom(listH, curH, barLen)) {
-                    System.out.println(String.format("listH-(curH+barLen)=%s", listH - (curH + barLen)));
-                    THREAD_POOL.submit(() -> nextPage());
-                }
+        //滑条到底事件
+        scrollBar.addAdjustmentListener(e -> {
+            int curH = e.getValue();
+            int barLen = scrollBar.getHeight();
+            int listH = searchRetList.getHeight();
+            if (isCloseToBottom(listH, curH, barLen)) {
+                THREAD_POOL.submit(() -> nextPage());
             }
+        });
+
+        searchRetList.addListSelectionListener(e -> {
+            THREAD_POOL.submit(() -> {
+                String s = searchRetList.getSelectedValue();
+                List<String> splitList = Splitter.on(":").omitEmptyStrings().trimResults().splitToList(s);
+                if (splitList.size() < 2) {
+                    return;
+                }
+                clickMavenId = new MavenId(splitList.get(0), splitList.get(1), null);
+
+                if (clickMavenId == null) {
+                    return;
+                }
+                List<String> versions = searchAndAddToVersionComboBox(clickMavenId.getGroupId(),
+                    clickMavenId.getArtifactId());
+                if (!versions.isEmpty()) {
+                    setToDependDetail(new MavenId(
+                        clickMavenId.getGroupId(), clickMavenId.getArtifactId(), versions.get(0)));
+                }
+            });
+        });
+
+        versionBox.addItemListener(e -> {
+            THREAD_POOL.submit(() -> {
+                setToDependDetail(new MavenId(
+                    clickMavenId.getGroupId(), clickMavenId.getArtifactId(), e.getItem().toString()));
+            });
         });
     }
 
@@ -121,5 +155,45 @@ public class SearchDependencyDialog extends BaseDialog {
             return true;
         }
         return false;
+    }
+
+    private List<String> searchAndAddToVersionComboBox(String groupId, String artifactId) {
+        List<String> list = this.searchVersionList(groupId, artifactId);
+        this.addToVersionComboBox(list);
+        return list;
+    }
+
+    private void addToVersionComboBox(List<String> list) {
+        if (list == null || list.isEmpty()) {
+            return;
+        }
+        ListComboBoxModel<String> model = new ListComboBoxModel<>(list);
+        versionBox.setModel(model);
+    }
+
+    private List<String> searchVersionList(String groupId, String artifactId) {
+        List<MavenId> list = ListVersionHelper.list(groupId, artifactId);
+        return list.stream().map(MavenId::getVersion).filter(StringUtils::isNotBlank)
+            .distinct().collect(Collectors.toList());
+    }
+
+    private void setToDependDetail(MavenId mavenId) {
+        if (mavenId == null) {
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder("<dependency>\n");
+        if (StringUtils.isNotBlank(mavenId.getGroupId())) {
+            sb.append("\t<groupId>" + mavenId.getGroupId() + "</groupId>\n");
+        }
+        if (StringUtils.isNotBlank(mavenId.getArtifactId())) {
+            sb.append("\t<artifactId>" + mavenId.getArtifactId() + "</artifactId>\n");
+        }
+        if (StringUtils.isNotBlank(mavenId.getVersion())) {
+            sb.append("\t<version>" + mavenId.getVersion() + "</version>\n");
+        }
+        sb.append("</dependency>");
+
+        dependDetail.setText(sb.toString());
     }
 }
