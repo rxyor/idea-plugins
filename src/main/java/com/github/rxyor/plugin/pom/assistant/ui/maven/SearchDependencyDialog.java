@@ -5,6 +5,8 @@ import com.github.rxyor.plugin.pom.assistant.common.jsoup.parse.ListVersionHelpe
 import com.github.rxyor.plugin.pom.assistant.common.jsoup.parse.Page;
 import com.google.common.base.Splitter;
 import com.intellij.openapi.project.Project;
+import java.awt.event.ItemEvent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -84,13 +86,10 @@ public class SearchDependencyDialog extends BaseDialog {
         searchRetList.addListSelectionListener(e -> {
             THREAD_POOL.submit(() -> {
                 String s = searchRetList.getSelectedValue();
-                List<String> splitList = Splitter.on(":").omitEmptyStrings().trimResults().splitToList(s);
-                if (splitList.size() < 2) {
-                    return;
-                }
-                clickMavenId = new MavenId(splitList.get(0), splitList.get(1), null);
+                clickMavenId = parseMavenId(s);
 
                 if (clickMavenId == null) {
+                    clearDependDetailAndVersionList();
                     return;
                 }
                 List<String> versions = searchAndAddToVersionComboBox(clickMavenId.getGroupId(),
@@ -98,28 +97,49 @@ public class SearchDependencyDialog extends BaseDialog {
                 if (!versions.isEmpty()) {
                     setToDependDetail(new MavenId(
                         clickMavenId.getGroupId(), clickMavenId.getArtifactId(), versions.get(0)));
+                } else {
+                    clearDependDetailAndVersionList();
                 }
             });
         });
 
         versionBox.addItemListener(e -> {
             THREAD_POOL.submit(() -> {
-                setToDependDetail(new MavenId(
-                    clickMavenId.getGroupId(), clickMavenId.getArtifactId(), e.getItem().toString()));
+                if (ItemEvent.SELECTED == e.getStateChange()) {
+                    setToDependDetail(new MavenId(
+                        clickMavenId.getGroupId(), clickMavenId.getArtifactId(), e.getItem().toString()));
+                }
             });
         });
     }
 
+    private MavenId parseMavenId(String s) {
+        List<String> splitList = Splitter.on(":").omitEmptyStrings().trimResults().splitToList(s);
+        if (splitList.size() < 2) {
+            return null;
+        }
+        return new MavenId(splitList.get(0), splitList.get(1), null);
+    }
+
     private void doSearch() {
-        searcher = DependsSearchHelper.builder().keyword(keywordTxt.getText()).build();
+        MavenId mavenId = parseMavenId(keywordTxt.getText());
+        Page page;
+        if (mavenId != null) {
+            List<MavenId> list = new ArrayList<>(1);
+            list.add(mavenId);
+            page = new Page<>(1, 10, 1, list);
+        } else {
+            searcher = DependsSearchHelper.builder().keyword(keywordTxt.getText()).build();
+            page = searcher.search();
+        }
         listModel.clear();
 
-        addToListModel(searcher.search());
+        addToListModel(page);
     }
 
     private void nextPage() {
         if (searcher == null) {
-            searcher = DependsSearchHelper.builder().keyword(keywordTxt.getText()).build();
+            return;
         }
         addToListModel(searcher.nextPage());
     }
@@ -164,8 +184,8 @@ public class SearchDependencyDialog extends BaseDialog {
     }
 
     private void addToVersionComboBox(List<String> list) {
-        if (list == null || list.isEmpty()) {
-            return;
+        if (list == null) {
+            list = new ArrayList<>(0);
         }
         ListComboBoxModel<String> model = new ListComboBoxModel<>(list);
         versionBox.setModel(model);
@@ -195,5 +215,11 @@ public class SearchDependencyDialog extends BaseDialog {
         sb.append("</dependency>");
 
         dependDetail.setText(sb.toString());
+    }
+
+    private void clearDependDetailAndVersionList() {
+        dependDetail.setText("");
+        ListComboBoxModel<String> model = new ListComboBoxModel<>(new ArrayList<>(0));
+        versionBox.setModel(model);
     }
 }
