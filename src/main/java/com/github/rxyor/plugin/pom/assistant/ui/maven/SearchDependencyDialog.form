@@ -62,12 +62,12 @@
             </constraints>
             <properties/>
           </component>
-          <component id="d7e64" class="javax.swing.JButton" binding="replaceBtn">
+          <component id="d7e64" class="javax.swing.JButton" binding="updateBtn">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Replace"/>
+              <text value="Update"/>
             </properties>
           </component>
           <component id="2ebfa" class="javax.swing.JButton" binding="copyBtn">

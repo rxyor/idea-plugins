@@ -1,5 +1,7 @@
 package com.github.rxyor.plugin.pom.assistant.ui.maven;
 
+import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiUtil;
+import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.WindowManager;
 import java.awt.Dimension;
@@ -18,10 +20,12 @@ import org.jetbrains.annotations.NotNull;
  */
 public abstract class BaseDialog extends JDialog {
 
+    protected final AnActionEvent e;
     protected final Project project;
 
-    public BaseDialog(@NotNull Project project) {
-        this.project = project;
+    public BaseDialog(@NotNull AnActionEvent e) {
+        this.e = e;
+        this.project = PsiUtil.getProject(e);
     }
 
     /**

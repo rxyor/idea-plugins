@@ -1,10 +1,18 @@
 package com.github.rxyor.plugin.pom.assistant.ui.maven;
 
+import com.github.rxyor.plugin.pom.assistant.common.clipboard.ClipboardUtil;
 import com.github.rxyor.plugin.pom.assistant.common.jsoup.parse.DependsSearchHelper;
 import com.github.rxyor.plugin.pom.assistant.common.jsoup.parse.ListVersionHelper;
 import com.github.rxyor.plugin.pom.assistant.common.jsoup.parse.Page;
+import com.github.rxyor.plugin.pom.assistant.common.maven.model.DependencyPair;
+import com.github.rxyor.plugin.pom.assistant.common.maven.util.MavenDependencyUtil;
+import com.github.rxyor.plugin.pom.assistant.common.maven.util.MavenProjectUtil;
+import com.github.rxyor.plugin.pom.assistant.common.notification.util.NotificationUtil;
+import com.github.rxyor.plugin.pom.assistant.common.psi.util.PsiUtil;
 import com.google.common.base.Splitter;
-import com.intellij.openapi.project.Project;
+import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.command.WriteCommandAction;
+import com.intellij.psi.PsiFile;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
@@ -24,6 +32,8 @@ import javax.swing.JTextField;
 import org.apache.commons.lang3.StringUtils;
 import org.jdesktop.swingx.combobox.ListComboBoxModel;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.idea.maven.dom.model.MavenDomDependencies;
+import org.jetbrains.idea.maven.dom.model.MavenDomProjectModel;
 import org.jetbrains.idea.maven.model.MavenId;
 
 /**
@@ -49,14 +59,20 @@ public class SearchDependencyDialog extends BaseDialog {
     private JComboBox<String> versionBox;
     private JButton copyBtn;
     private JButton addBtn;
-    private JButton replaceBtn;
+    private JButton updateBtn;
+
     private DefaultListModel<String> listModel = new DefaultListModel();
     private DependsSearchHelper searcher = null;
     private MavenId clickMavenId = null;
 
-    public SearchDependencyDialog(@NotNull Project project) {
-        super(project);
-        super.setContentPane(panel);
+    public SearchDependencyDialog(@NotNull AnActionEvent e) {
+        super(e);
+        this.init();
+    }
+
+    public SearchDependencyDialog(@NotNull AnActionEvent e, MavenId clickMavenId) {
+        super(e);
+        this.clickMavenId = clickMavenId;
         this.init();
     }
 
@@ -68,7 +84,18 @@ public class SearchDependencyDialog extends BaseDialog {
      * 初始化
      */
     protected void init() {
+        super.setContentPane(panel);
         this.initViewBindListener();
+        this.fillPreDataToUI();
+    }
+
+    /**
+     * 填充预准备数据到UI
+     */
+    private void fillPreDataToUI() {
+        if (clickMavenId != null) {
+            keywordTxt.setText(clickMavenId.getGroupId() + ":" + clickMavenId.getArtifactId());
+        }
     }
 
     /**
@@ -99,6 +126,25 @@ public class SearchDependencyDialog extends BaseDialog {
             THREAD_POOL.submit(() -> {
                 handleSelectVersionEvent(e);
             });
+        });
+
+        //复制按钮选择事件
+        copyBtn.addActionListener(e -> {
+            String text = dependDetail.getText();
+            if (StringUtils.isNotBlank(text)) {
+                ClipboardUtil.setToClipboard(dependDetail.getText());
+                NotificationUtil.info("Info", "Dependency has copied", project);
+            }
+        });
+
+        //添加按钮选择事件
+        addBtn.addActionListener(e -> {
+            addDependency(clickMavenId);
+        });
+
+        //更新按钮选择事件
+        updateBtn.addActionListener(e -> {
+            updateDependency(clickMavenId);
         });
     }
 
@@ -132,9 +178,10 @@ public class SearchDependencyDialog extends BaseDialog {
         List<String> versions = searchAndAddToVersionComboBoxUI(clickMavenId.getGroupId(),
             clickMavenId.getArtifactId());
         if (!versions.isEmpty()) {
+            clickMavenId = new MavenId(
+                clickMavenId.getGroupId(), clickMavenId.getArtifactId(), versions.get(0));
             //填充到展示面板里
-            setToDependDetail(new MavenId(
-                clickMavenId.getGroupId(), clickMavenId.getArtifactId(), versions.get(0)));
+            setToDependDetail(clickMavenId);
         } else {
             clearDependDetailAndVersionListUI();
         }
@@ -147,8 +194,9 @@ public class SearchDependencyDialog extends BaseDialog {
      */
     private void handleSelectVersionEvent(ItemEvent e) {
         if (ItemEvent.SELECTED == e.getStateChange()) {
-            setToDependDetail(new MavenId(
-                clickMavenId.getGroupId(), clickMavenId.getArtifactId(), e.getItem().toString()));
+            clickMavenId = new MavenId(
+                clickMavenId.getGroupId(), clickMavenId.getArtifactId(), e.getItem().toString());
+            setToDependDetail(clickMavenId);
         }
     }
 
@@ -334,5 +382,73 @@ public class SearchDependencyDialog extends BaseDialog {
             return null;
         }
         return new MavenId(splitList.get(0), splitList.get(1), null);
+    }
+
+    /**
+     * 添加依赖
+     *
+     * @param mavenId
+     */
+    private void addDependency(MavenId mavenId) {
+        if (mavenId == null) {
+            return;
+        }
+
+        final PsiFile psiFile = PsiUtil.getPsiFile(e);
+        final MavenDomProjectModel model = MavenProjectUtil
+            .getMavenDomProjectModel(psiFile);
+
+        DependencyPair dependencyPair = MavenDependencyUtil
+            .findDependency(model, mavenId);
+        boolean exist = isExist(dependencyPair);
+        if (exist) {
+            NotificationUtil.warn("Warn", "Dependency is existed", project);
+        } else {
+            WriteCommandAction.runWriteCommandAction(PsiUtil.getProject(e), () -> {
+                MavenDomDependencies domDependencies = model
+                    .getDependencyManagement().getDependencies();
+                MavenDependencyUtil.addDomDependency(domDependencies, mavenId);
+                PsiUtil.reformat(psiFile);
+            });
+        }
+    }
+
+    /**
+     * 更新依赖
+     *
+     * @param mavenId
+     */
+    private void updateDependency(MavenId mavenId) {
+        if (mavenId == null) {
+            return;
+        }
+
+        final PsiFile psiFile = PsiUtil.getPsiFile(e);
+        final MavenDomProjectModel model = MavenProjectUtil
+            .getMavenDomProjectModel(psiFile);
+
+        DependencyPair dependencyPair = MavenDependencyUtil
+            .findDependency(model, mavenId);
+        boolean exist = isExist(dependencyPair);
+        WriteCommandAction.runWriteCommandAction(PsiUtil.getProject(e), () -> {
+            if (exist) {
+                if (dependencyPair.getDependency() != null) {
+                    dependencyPair.getDependency().getVersion().setValue(mavenId.getVersion());
+                }
+                if (dependencyPair.getManagementDependency() != null) {
+                    dependencyPair.getManagementDependency().getVersion().setValue(mavenId.getVersion());
+                }
+            } else {
+                MavenDomDependencies domDependencies = model
+                    .getDependencyManagement().getDependencies();
+                MavenDependencyUtil.addDomDependency(domDependencies, mavenId);
+            }
+            PsiUtil.reformat(psiFile);
+        });
+    }
+
+    private boolean isExist(DependencyPair pair) {
+        return pair != null &&
+            (pair.getManagementDependency() != null || pair.getDependency() != null);
     }
 }

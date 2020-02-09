@@ -241,7 +241,8 @@ public class MavenDependencyUtil {
         if (list != null && !list.isEmpty()) {
             for (MavenDomDependency e : list) {
                 MavenId item = MavenIdUtil.convert(e);
-                if (mavenId.equals(item)) {
+                if (StringUtils.equals(mavenId.getGroupId(), item.getGroupId())
+                    && StringUtils.equals(mavenId.getArtifactId(), item.getArtifactId())) {
                     return e;
                 }
             }
@@ -360,5 +361,42 @@ public class MavenDependencyUtil {
             return parentTag;
         }
         return null;
+    }
+
+    /**
+     *添加依赖
+     *
+     * @author liuyang
+     * @date 2020-02-09 周日 17:12:35
+     * @param management management
+     * @param mavenId mavenId
+     * @return
+     */
+    public static MavenDomDependency addDomDependency(
+        @NotNull MavenDomDependencyManagement management,
+        MavenId mavenId) {
+        return addDomDependency(management.getDependencies(), mavenId);
+    }
+
+    /**
+     *添加依赖
+     *
+     * @author liuyang
+     * @date 2020-02-09 周日 17:12:48
+     * @param dependencies dependencies
+     * @param mavenId mavenId
+     * @return
+     */
+    public static MavenDomDependency addDomDependency(
+        @NotNull MavenDomDependencies dependencies,
+        MavenId mavenId) {
+        if (mavenId == null) {
+            return null;
+        }
+        MavenDomDependency domDependency = dependencies.addDependency();
+        domDependency.getGroupId().setValue(mavenId.getGroupId());
+        domDependency.getArtifactId().setValue(mavenId.getArtifactId());
+        domDependency.getVersion().setValue(mavenId.getVersion());
+        return domDependency;
     }
 }
